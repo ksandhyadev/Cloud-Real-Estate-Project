@@ -58,14 +58,22 @@ class NLPEngine:
             f"and {len(found_luxury)} premium attributes. "
             f"Luxury score evaluated at {luxury_score}/10."
         )
-        
+
+        # Enhance summary via Google Gemini API if configured; otherwise use calibrated local NLP
+        gemini_summary = None
+        try:
+            from app.services.gemini_service import gemini_service
+            gemini_summary = gemini_service.generate_description_summary(text)
+        except Exception:
+            pass
+
         return {
             "luxury_score": luxury_score,
             "extracted_amenities": list(set(found_amenities)),
             "condition_indicators": list(set(found_condition)) if found_condition else ["Move-in ready condition"],
             "premium_keywords": list(set(found_luxury)),
             "sentiment_tone": tone,
-            "summary": summary
+            "summary": gemini_summary if gemini_summary else summary
         }
 
 nlp_engine = NLPEngine()

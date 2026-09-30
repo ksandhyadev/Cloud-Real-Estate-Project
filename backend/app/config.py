@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 # Load .env if present
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
+load_dotenv(BASE_DIR.parent / ".env")
 
 class Settings:
     PROJECT_NAME: str = "Cloud-Based Real Estate Analysis"
@@ -19,6 +20,7 @@ class Settings:
     )
     
     GEOAPIFY_API_KEY: str = os.getenv("GEOAPIFY_API_KEY", "")
+    GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
     
     UPLOAD_DIR: Path = BASE_DIR / "uploads"
     STATIC_DIR: Path = BASE_DIR / "static"
