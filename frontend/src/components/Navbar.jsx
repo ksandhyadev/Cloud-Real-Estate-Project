@@ -66,8 +66,8 @@ export default function Navbar({ onOpenAuth, onNavigate, currentPage }) {
             <Building2 size={24} color="#ffffff" />
           </div>
           <div>
-            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.02em', color: '#ffffff' }}>
-              Prop<span style={{ color: '#818cf8' }}>Intel</span> AI
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.02em', color: 'var(--text-main)' }}>
+              Prop<span style={{ color: 'var(--accent-primary)' }}>Intel</span> AI
             </div>
             <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
               Cloud Real Estate Analysis
@@ -331,7 +331,7 @@ export default function Navbar({ onOpenAuth, onNavigate, currentPage }) {
                     {user.role === 'seller' && (
                       <button 
                         onClick={() => { setShowUserMenu(false); onNavigate('seller-dashboard'); }}
-                        style={{ width: '100%', textAlign: 'left', padding: '0.5rem', background: 'none', border: 'none', color: '#fff', fontSize: '0.85rem', cursor: 'pointer', borderRadius: '4px' }}
+                        style={{ width: '100%', textAlign: 'left', padding: '0.5rem', background: 'none', border: 'none', color: 'var(--text-main)', fontSize: '0.85rem', cursor: 'pointer', borderRadius: '4px' }}
                       >
                         Seller Dashboard
                       </button>
@@ -340,7 +340,7 @@ export default function Navbar({ onOpenAuth, onNavigate, currentPage }) {
                     {user.role === 'admin' && (
                       <button 
                         onClick={() => { setShowUserMenu(false); onNavigate('admin-dashboard'); }}
-                        style={{ width: '100%', textAlign: 'left', padding: '0.5rem', background: 'none', border: 'none', color: '#fff', fontSize: '0.85rem', cursor: 'pointer', borderRadius: '4px' }}
+                        style={{ width: '100%', textAlign: 'left', padding: '0.5rem', background: 'none', border: 'none', color: 'var(--text-main)', fontSize: '0.85rem', cursor: 'pointer', borderRadius: '4px' }}
                       >
                         Admin Moderation
                       </button>
@@ -392,8 +392,8 @@ export default function Navbar({ onOpenAuth, onNavigate, currentPage }) {
                   <Building2 size={18} color="#ffffff" />
                 </div>
                 <div>
-                  <div style={{ fontWeight: 800, fontSize: '1rem', color: '#ffffff' }}>
-                    Prop<span style={{ color: '#818cf8' }}>Intel</span> AI
+                  <div style={{ fontWeight: 800, fontSize: '1rem', color: 'var(--text-main)' }}>
+                    Prop<span style={{ color: 'var(--accent-primary)' }}>Intel</span> AI
                   </div>
                 </div>
               </div>
@@ -408,13 +408,13 @@ export default function Navbar({ onOpenAuth, onNavigate, currentPage }) {
 
             {/* User Profile Card (Mobile) */}
             {user ? (
-              <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: '0.75rem', marginBottom: '1rem' }}>
+              <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-subtle)', borderRadius: 'var(--radius-md)', padding: '0.75rem', marginBottom: '1rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.35rem' }}>
-                  <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'var(--accent-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>
+                  <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: 'var(--accent-primary)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>
                     {user.fullName.charAt(0)}
                   </div>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: '0.85rem', color: '#fff' }}>{user.fullName}</div>
+                    <div style={{ fontWeight: 700, fontSize: '0.85rem', color: 'var(--text-main)' }}>{user.fullName}</div>
                     <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{user.email}</div>
                   </div>
                 </div>

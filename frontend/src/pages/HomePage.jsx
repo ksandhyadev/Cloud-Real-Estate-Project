@@ -68,12 +68,12 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
             fontSize: 'clamp(2.2rem, 5vw, 3.5rem)',
             fontWeight: 800,
             lineHeight: 1.15,
-            color: '#ffffff',
+            color: 'var(--text-main)',
             maxWidth: '850px',
             margin: '0 auto 1.25rem auto',
             letterSpacing: '-0.02em'
           }}>
-            Discover Properties with <span style={{ background: 'linear-gradient(135deg, #818cf8, #c084fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Explainable AI</span> Valuation
+            Discover Properties with <span style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Explainable AI</span> Valuation
           </h1>
 
           <p style={{
@@ -92,7 +92,8 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
             margin: '0 auto',
             borderRadius: 'var(--radius-xl)',
             padding: '1.5rem',
-            boxShadow: 'var(--shadow-glow)'
+            boxShadow: 'var(--shadow-md)',
+            background: '#ffffff'
           }}>
             
             {/* Transaction Purpose Tabs */}
@@ -109,7 +110,7 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
                     padding: '0.5rem 1.25rem',
                     borderRadius: 'var(--radius-md)',
                     border: 'none',
-                    background: activeTab === tab.id ? 'var(--accent-primary)' : 'rgba(255, 255, 255, 0.05)',
+                    background: activeTab === tab.id ? 'var(--accent-primary)' : 'var(--bg-secondary)',
                     color: activeTab === tab.id ? '#ffffff' : 'var(--text-muted)',
                     fontWeight: 700,
                     fontSize: '0.85rem',
@@ -136,10 +137,10 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
                   style={{
                     width: '100%',
                     padding: '0.75rem',
-                    background: 'var(--bg-secondary)',
+                    background: '#ffffff',
                     border: '1px solid var(--border-card)',
                     borderRadius: 'var(--radius-sm)',
-                    color: '#fff',
+                    color: 'var(--text-main)',
                     fontSize: '0.9rem'
                   }}
                 >
@@ -162,10 +163,10 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
                   style={{
                     width: '100%',
                     padding: '0.75rem',
-                    background: 'var(--bg-secondary)',
+                    background: '#ffffff',
                     border: '1px solid var(--border-card)',
                     borderRadius: 'var(--radius-sm)',
-                    color: '#fff',
+                    color: 'var(--text-main)',
                     fontSize: '0.9rem'
                   }}
                 >
@@ -188,10 +189,10 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
                   style={{
                     width: '100%',
                     padding: '0.75rem',
-                    background: 'var(--bg-secondary)',
+                    background: '#ffffff',
                     border: '1px solid var(--border-card)',
                     borderRadius: 'var(--radius-sm)',
-                    color: '#fff',
+                    color: 'var(--text-main)',
                     fontSize: '0.9rem'
                   }}
                 >
@@ -216,10 +217,10 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
                   style={{
                     width: '100%',
                     padding: '0.75rem',
-                    background: 'var(--bg-secondary)',
+                    background: '#ffffff',
                     border: '1px solid var(--border-card)',
                     borderRadius: 'var(--radius-sm)',
-                    color: '#fff',
+                    color: 'var(--text-main)',
                     fontSize: '0.9rem'
                   }}
                 />
@@ -246,8 +247,8 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
                   key={t.id}
                   onClick={() => onSearchWithFilters({ property_type: t.id })}
                   style={{
-                    background: 'rgba(30, 41, 59, 0.5)',
-                    border: '1px solid var(--border-subtle)',
+                    background: '#ffffff',
+                    border: '1px solid var(--border-card)',
                     padding: '0.6rem 1.25rem',
                     borderRadius: '9999px',
                     display: 'flex',
@@ -257,18 +258,19 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
                     fontSize: '0.85rem',
                     fontWeight: 600,
                     color: 'var(--text-main)',
+                    boxShadow: 'var(--shadow-sm)',
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.borderColor = 'var(--accent-primary)';
-                    e.currentTarget.style.background = 'rgba(99, 102, 241, 0.15)';
+                    e.currentTarget.style.background = '#eef2ff';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border-subtle)';
-                    e.currentTarget.style.background = 'rgba(30, 41, 59, 0.5)';
+                    e.currentTarget.style.borderColor = 'var(--border-card)';
+                    e.currentTarget.style.background = '#ffffff';
                   }}
                 >
-                  <Icon size={16} color="#818cf8" />
+                  <Icon size={16} color="var(--accent-primary)" />
                   <span>{t.label}</span>
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>{t.count}</span>
                 </div>
@@ -284,10 +286,10 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
-              <div style={{ color: '#a5b4fc', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <div style={{ color: 'var(--accent-primary)', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Verified Market Listings
               </div>
-              <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff', marginTop: '0.2rem' }}>
+              <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.2rem' }}>
                 Featured AI-Evaluated Properties
               </h2>
             </div>
@@ -325,7 +327,7 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
           <div style={{ color: '#a5b4fc', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Multimodal Architecture
           </div>
-          <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#fff', marginTop: '0.25rem', marginBottom: '2.5rem' }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.25rem', marginBottom: '2.5rem' }}>
             How Explainable Property Intelligence Works
           </h2>
 
@@ -336,11 +338,11 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
             textAlign: 'left'
           }}>
             {/* Step 1 */}
-            <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)' }}>
-              <div style={{ background: 'rgba(99, 102, 241, 0.15)', width: '40px', height: '40px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                <Cpu size={22} color="#818cf8" />
+            <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)', background: '#ffffff' }}>
+              <div style={{ background: '#eef2ff', width: '40px', height: '40px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                <Cpu size={22} color="#4f46e5" />
               </div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff', marginBottom: '0.4rem' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
                 1. Structured & Spatial Vector
               </h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
@@ -349,11 +351,11 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
             </div>
 
             {/* Step 2 */}
-            <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)' }}>
-              <div style={{ background: 'rgba(6, 182, 212, 0.15)', width: '40px', height: '40px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                <Sparkles size={22} color="#06b6d4" />
+            <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)', background: '#ffffff' }}>
+              <div style={{ background: '#ecfeff', width: '40px', height: '40px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                <Sparkles size={22} color="#0891b2" />
               </div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff', marginBottom: '0.4rem' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
                 2. NLP Text Intelligence
               </h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
@@ -362,11 +364,11 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
             </div>
 
             {/* Step 3 */}
-            <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)' }}>
-              <div style={{ background: 'rgba(16, 185, 129, 0.15)', width: '40px', height: '40px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                <BarChart3 size={22} color="#10b981" />
+            <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)', background: '#ffffff' }}>
+              <div style={{ background: '#ecfdf5', width: '40px', height: '40px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                <BarChart3 size={22} color="#059669" />
               </div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff', marginBottom: '0.4rem' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
                 3. XGBoost Price Regressor
               </h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
@@ -375,11 +377,11 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
             </div>
 
             {/* Step 4 */}
-            <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)' }}>
-              <div style={{ background: 'rgba(245, 158, 11, 0.15)', width: '40px', height: '40px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                <ShieldCheck size={22} color="#f59e0b" />
+            <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)', background: '#ffffff' }}>
+              <div style={{ background: '#fffbeb', width: '40px', height: '40px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                <ShieldCheck size={22} color="#d97706" />
               </div>
-              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff', marginBottom: '0.4rem' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
                 4. SHAP Explainability
               </h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
@@ -398,11 +400,11 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
             alignItems: 'center',
             flexWrap: 'wrap',
             gap: '1.5rem',
-            background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(16, 185, 129, 0.15))',
-            border: '1px solid rgba(99, 102, 241, 0.3)'
+            background: 'linear-gradient(135deg, #eef2ff, #f0fdf4)',
+            border: '1px solid #c7d2fe'
           }}>
             <div style={{ textAlign: 'left' }}>
-              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>Are You a Property Owner or Seller?</h3>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-main)' }}>Are You a Property Owner or Seller?</h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
                 List your property in 7 simple steps and get instant multimodal AI valuation and SHAP analysis.
               </p>

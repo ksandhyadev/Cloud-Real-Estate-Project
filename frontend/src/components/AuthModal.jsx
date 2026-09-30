@@ -76,7 +76,9 @@ export default function AuthModal({ isOpen, onClose }) {
         maxWidth: '440px',
         borderRadius: 'var(--radius-xl)',
         padding: '2rem',
-        boxShadow: 'var(--shadow-glow)',
+        background: '#ffffff',
+        border: '1px solid var(--border-card)',
+        boxShadow: 'var(--shadow-lg)',
         position: 'relative'
       }}>
         {/* Close Button */}
@@ -89,7 +91,7 @@ export default function AuthModal({ isOpen, onClose }) {
 
         {/* Title */}
         <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-          <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>
+          <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-main)' }}>
             {isRegister ? 'Create an Account' : 'Welcome Back'}
           </h2>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
@@ -118,7 +120,7 @@ export default function AuthModal({ isOpen, onClose }) {
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
           {isRegister && (
             <div>
-              <label style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
+              <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
                 Full Name
               </label>
               <div style={{ position: 'relative' }}>
@@ -132,10 +134,10 @@ export default function AuthModal({ isOpen, onClose }) {
                   style={{
                     width: '100%',
                     padding: '0.6rem 0.6rem 0.6rem 2.2rem',
-                    background: 'var(--bg-secondary)',
+                    background: '#f8fafc',
                     border: '1px solid var(--border-card)',
                     borderRadius: 'var(--radius-sm)',
-                    color: '#fff',
+                    color: 'var(--text-main)',
                     fontSize: '0.85rem'
                   }}
                 />
@@ -144,7 +146,7 @@ export default function AuthModal({ isOpen, onClose }) {
           )}
 
           <div>
-            <label style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
+            <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
               Email Address
             </label>
             <div style={{ position: 'relative' }}>
@@ -158,10 +160,10 @@ export default function AuthModal({ isOpen, onClose }) {
                 style={{
                   width: '100%',
                   padding: '0.6rem 0.6rem 0.6rem 2.2rem',
-                  background: 'var(--bg-secondary)',
+                  background: '#f8fafc',
                   border: '1px solid var(--border-card)',
                   borderRadius: 'var(--radius-sm)',
-                  color: '#fff',
+                  color: 'var(--text-main)',
                   fontSize: '0.85rem'
                 }}
               />
@@ -169,7 +171,7 @@ export default function AuthModal({ isOpen, onClose }) {
           </div>
 
           <div>
-            <label style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
+            <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
               Password
             </label>
             <div style={{ position: 'relative' }}>
@@ -183,10 +185,10 @@ export default function AuthModal({ isOpen, onClose }) {
                 style={{
                   width: '100%',
                   padding: '0.6rem 0.6rem 0.6rem 2.2rem',
-                  background: 'var(--bg-secondary)',
+                  background: '#f8fafc',
                   border: '1px solid var(--border-card)',
                   borderRadius: 'var(--radius-sm)',
-                  color: '#fff',
+                  color: 'var(--text-main)',
                   fontSize: '0.85rem'
                 }}
               />
@@ -195,7 +197,7 @@ export default function AuthModal({ isOpen, onClose }) {
 
           {isRegister && (
             <div>
-              <label style={{ fontSize: '0.75rem', color: 'var(--text-dim)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
+              <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600, display: 'block', marginBottom: '4px' }}>
                 Account Role
               </label>
               <select
@@ -204,10 +206,10 @@ export default function AuthModal({ isOpen, onClose }) {
                 style={{
                   width: '100%',
                   padding: '0.6rem',
-                  background: 'var(--bg-secondary)',
+                  background: '#f8fafc',
                   border: '1px solid var(--border-card)',
                   borderRadius: 'var(--radius-sm)',
-                  color: '#fff',
+                  color: 'var(--text-main)',
                   fontSize: '0.85rem'
                 }}
               >
@@ -232,7 +234,7 @@ export default function AuthModal({ isOpen, onClose }) {
           {isRegister ? 'Already have an account?' : "Don't have an account?"}{' '}
           <button
             onClick={() => { setIsRegister(!isRegister); setError(''); }}
-            style={{ background: 'none', border: 'none', color: '#818cf8', fontWeight: 600, cursor: 'pointer' }}
+            style={{ background: 'none', border: 'none', color: 'var(--accent-primary)', fontWeight: 600, cursor: 'pointer' }}
           >
             {isRegister ? 'Sign In' : 'Register Now'}
           </button>

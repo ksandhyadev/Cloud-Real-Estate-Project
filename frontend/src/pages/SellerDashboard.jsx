@@ -42,7 +42,7 @@ export default function SellerDashboard({ onNavigatePostProperty, onSelectProper
           <span className="badge badge-ai" style={{ marginBottom: '0.4rem' }}>
             <Building2 size={13} /> Seller Management Portal
           </span>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff' }}>
+          <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-main)' }}>
             Seller Dashboard
           </h1>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
@@ -59,7 +59,7 @@ export default function SellerDashboard({ onNavigatePostProperty, onSelectProper
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2.5rem' }}>
         <div className="glass-panel" style={{ padding: '1.25rem', borderRadius: 'var(--radius-md)' }}>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Active Listings</div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff', marginTop: '0.25rem' }}>{properties.length}</div>
+          <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.25rem' }}>{properties.length}</div>
         </div>
 
         <div className="glass-panel" style={{ padding: '1.25rem', borderRadius: 'var(--radius-md)' }}>
@@ -75,7 +75,7 @@ export default function SellerDashboard({ onNavigatePostProperty, onSelectProper
 
       {/* Listings Table */}
       <div className="glass-panel" style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', marginBottom: '2.5rem', border: '1px solid var(--border-card)' }}>
-        <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--border-card)', fontWeight: 700, fontSize: '1rem', color: '#fff' }}>
+        <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--border-card)', fontWeight: 700, fontSize: '1rem', color: 'var(--text-main)' }}>
           My Published Properties
         </div>
 
@@ -99,7 +99,7 @@ export default function SellerDashboard({ onNavigatePostProperty, onSelectProper
               <tbody>
                 {properties.map(p => (
                   <tr key={p.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <td style={{ padding: '1rem 1.5rem', fontWeight: 600, color: '#fff' }}>
+                    <td style={{ padding: '1rem 1.5rem', fontWeight: 600, color: 'var(--text-main)' }}>
                       <div style={{ cursor: 'pointer', color: '#818cf8' }} onClick={() => onSelectProperty(p.id)}>
                         {p.title}
                       </div>
@@ -108,7 +108,7 @@ export default function SellerDashboard({ onNavigatePostProperty, onSelectProper
                     <td style={{ padding: '1rem', textTransform: 'capitalize', color: 'var(--text-muted)' }}>
                       {p.property_type} ({p.bhk} BHK)
                     </td>
-                    <td style={{ padding: '1rem', fontWeight: 700, color: '#fff' }}>
+                    <td style={{ padding: '1rem', fontWeight: 700, color: 'var(--text-main)' }}>
                       {formatPrice(p.price, p.listing_type)}
                     </td>
                     <td style={{ padding: '1rem', color: '#a5b4fc', fontWeight: 600 }}>
@@ -138,7 +138,7 @@ export default function SellerDashboard({ onNavigatePostProperty, onSelectProper
 
       {/* Inquiries Section */}
       <div className="glass-panel" style={{ borderRadius: 'var(--radius-xl)', padding: '1.5rem', border: '1px solid var(--border-card)' }}>
-        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <Mail size={18} color="#818cf8" /> Recent Buyer Enquiries ({enquiries.length})
         </h3>
         
@@ -149,9 +149,9 @@ export default function SellerDashboard({ onNavigatePostProperty, onSelectProper
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             {enquiries.map(e => (
-              <div key={e.id} style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+              <div key={e.id} style={{ background: '#f8fafc', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
-                  <span style={{ fontWeight: 700, color: '#fff', fontSize: '0.9rem' }}>{e.buyer_name} ({e.buyer_email})</span>
+                  <span style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '0.9rem' }}>{e.buyer_name} ({e.buyer_email})</span>
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>{new Date(e.created_at).toLocaleDateString()}</span>
                 </div>
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>"{e.message}"</div>

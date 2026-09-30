@@ -30,7 +30,7 @@ export default function Footer() {
               }}>
                 <Building2 size={20} color="#ffffff" />
               </div>
-              <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.2rem', color: '#fff' }}>
+              <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.2rem', color: 'var(--text-main)' }}>
                 Cloud Real Estate Analysis
               </span>
             </div>
@@ -67,7 +67,7 @@ export default function Footer() {
               Academic Transparency
             </h4>
             <div style={{
-              background: 'rgba(255, 255, 255, 0.03)',
+              background: '#f8fafc',
               padding: '0.85rem',
               borderRadius: 'var(--radius-sm)',
               border: '1px solid var(--border-subtle)',

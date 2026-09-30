@@ -119,11 +119,12 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
         padding: '1.25rem 1.75rem',
         marginBottom: '2rem',
         border: '1px solid var(--border-card)',
-        background: 'rgba(15, 23, 42, 0.75)'
+        background: '#ffffff',
+        boxShadow: 'var(--shadow-sm)'
       }}>
         <form onSubmit={handleSmartSearchSubmit} style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
           <div style={{ position: 'relative', flex: 1 }}>
-            <SearchIcon size={18} color="#818cf8" style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)' }} />
+            <SearchIcon size={18} color="#4f46e5" style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)' }} />
             <input 
               type="text"
               className="input-text"
@@ -133,8 +134,9 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
                 paddingRight: '36px',
                 fontSize: '0.95rem',
                 borderRadius: 'var(--radius-full)',
-                background: 'rgba(2, 6, 23, 0.7)',
-                border: '1px solid var(--border-subtle)'
+                background: '#f8fafc',
+                color: 'var(--text-main)',
+                border: '1px solid var(--border-card)'
               }}
               placeholder="Natural Language Search: e.g., '2 BHK in Whitefield under 90 lakh near metro'"
               value={smartPrompt}
@@ -164,13 +166,13 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.75rem', flexWrap: 'wrap', fontSize: '0.75rem' }}>
           {smartTokens.length > 0 ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
-              <span style={{ color: '#a5b4fc', fontWeight: 600 }}>Parsed Filters:</span>
+              <span style={{ color: 'var(--accent-primary)', fontWeight: 600 }}>Parsed Filters:</span>
               {smartTokens.map((t, i) => (
                 <span key={i} className="badge badge-ai" style={{ fontSize: '0.72rem' }}>{t}</span>
               ))}
               <button 
                 onClick={clearSmartSearch} 
-                style={{ background: 'none', border: 'none', color: '#f43f5e', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.2rem', padding: 0 }}
+                style={{ background: 'none', border: 'none', color: '#e11d48', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.2rem', padding: 0 }}
               >
                 <X size={12} /> Clear NLP filter
               </button>
@@ -191,14 +193,14 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
                   }}
                   style={{
                     color: 'var(--text-muted)',
-                    background: 'rgba(255,255,255,0.03)',
+                    background: '#f1f5f9',
                     border: '1px solid var(--border-subtle)',
                     padding: '0.2rem 0.55rem',
                     borderRadius: 'var(--radius-full)',
                     cursor: 'pointer',
                     transition: 'all 0.2s ease'
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#818cf8'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--accent-primary)'; e.currentTarget.style.borderColor = 'var(--accent-primary)'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)'; e.currentTarget.style.borderColor = 'var(--border-subtle)'; }}
                 >
                   "{p}"
@@ -212,7 +214,7 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
       {/* Header Bar */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2rem' }}>
         <div>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff' }}>
+          <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-main)' }}>
             Property Catalog & Market Discovery
           </h1>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
@@ -304,8 +306,8 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
             </div>
           ) : fetchError ? (
             <div className="glass-panel" style={{ textAlign: 'center', padding: '3.5rem 2rem', borderRadius: 'var(--radius-lg)' }}>
-              <AlertTriangle size={40} color="#f43f5e" style={{ margin: '0 auto 1rem auto' }} />
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>Failed to retrieve listings</h3>
+              <AlertTriangle size={40} color="#e11d48" style={{ margin: '0 auto 1rem auto' }} />
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>Failed to retrieve listings</h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.4rem', marginBottom: '1.5rem' }}>
                 {fetchError}
               </p>
@@ -316,7 +318,7 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
           ) : properties.length === 0 ? (
             <div className="glass-panel" style={{ textAlign: 'center', padding: '4rem 2rem', borderRadius: 'var(--radius-lg)' }}>
               <SearchIcon size={48} color="var(--text-dim)" style={{ margin: '0 auto 1rem auto' }} />
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>No properties matched your criteria</h3>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>No properties matched your criteria</h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.4rem', maxWidth: '400px', margin: '0.4rem auto 1.5rem auto' }}>
                 Try adjusting your budget, BHK configuration, or clearing specific filters to see more listings.
               </p>

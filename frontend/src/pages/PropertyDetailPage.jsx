@@ -244,7 +244,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               )}
             </div>
 
-            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#fff', lineHeight: 1.25, marginBottom: '0.5rem' }}>
+            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, color: 'var(--text-main)', lineHeight: 1.25, marginBottom: '0.5rem' }}>
               {property.title}
             </h1>
 
@@ -258,7 +258,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               borderRadius: 'var(--radius-md)',
               padding: '1.25rem',
               marginBottom: '1.5rem',
-              background: 'rgba(15, 23, 42, 0.75)',
+              background: '#f8fafc',
               border: '1px solid var(--border-card)'
             }}>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
@@ -266,7 +266,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     Listed Asking Price
                   </div>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff' }}>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-main)' }}>
                     {formatPrice(property.price, property.listing_type)}
                   </div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
@@ -311,24 +311,24 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               {locBench && (
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.75rem', color: 'var(--text-dim)', paddingTop: '0.5rem', borderTop: '1px dashed rgba(255,255,255,0.08)' }}>
                   <span>{locBench.locality} Micro-Market Benchmark:</span>
-                  <span style={{ color: '#fff', fontWeight: 600 }}>₹{locBench.min_rate_sqft.toLocaleString()} – ₹{locBench.max_rate_sqft.toLocaleString()} / sq.ft</span>
+                  <span style={{ color: 'var(--text-main)', fontWeight: 600 }}>₹{locBench.min_rate_sqft.toLocaleString()} – ₹{locBench.max_rate_sqft.toLocaleString()} / sq.ft</span>
                 </div>
               )}
             </div>
 
             {/* Quick Specs Grid */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.85rem', marginBottom: '1.5rem', textAlign: 'center' }}>
-              <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+              <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Configuration</div>
-                <div style={{ fontWeight: 700, color: '#fff', fontSize: '1rem', marginTop: '2px' }}>{property.bhk} BHK</div>
+                <div style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '1rem', marginTop: '2px' }}>{property.bhk} BHK</div>
               </div>
-              <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+              <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Built-up Area</div>
-                <div style={{ fontWeight: 700, color: '#fff', fontSize: '1rem', marginTop: '2px' }}>{property.area_sqft} sq.ft</div>
+                <div style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '1rem', marginTop: '2px' }}>{property.area_sqft} sq.ft</div>
               </div>
-              <div style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+              <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Bathrooms</div>
-                <div style={{ fontWeight: 700, color: '#fff', fontSize: '1rem', marginTop: '2px' }}>{property.bathrooms} Baths</div>
+                <div style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '1rem', marginTop: '2px' }}>{property.bathrooms} Baths</div>
               </div>
             </div>
           </div>
@@ -378,7 +378,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
         <section className="glass-panel" style={{ borderRadius: 'var(--radius-lg)', padding: '2rem', marginBottom: '2.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
             <Award size={20} color="#818cf8" />
-            <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', margin: 0 }}>
+            <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)', margin: 0 }}>
               "Why This Property?" — Factual AI Intelligence Insights
             </h2>
           </div>
@@ -388,7 +388,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               <div 
                 key={idx}
                 style={{
-                  background: 'rgba(15, 23, 42, 0.6)',
+                  background: '#f8fafc',
                   border: '1px solid var(--border-subtle)',
                   borderRadius: 'var(--radius-sm)',
                   padding: '1rem',
@@ -420,7 +420,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               <div style={{ color: '#10b981', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>
                 Multimodal Evaluation Matrix
               </div>
-              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', marginTop: '0.2rem' }}>
+              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.2rem' }}>
                 Transparent 7-Dimensional AI Property Scorecard
               </h2>
             </div>
@@ -440,7 +440,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
                 <div 
                   key={dim.id}
                   style={{
-                    background: 'rgba(15, 23, 42, 0.65)',
+                    background: '#f8fafc',
                     border: '1px solid var(--border-subtle)',
                     borderRadius: 'var(--radius-md)',
                     padding: '1.1rem',
@@ -448,12 +448,12 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>{dim.label}</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-main)' }}>{dim.label}</span>
                     <span style={{ fontSize: '1.1rem', fontWeight: 800, color: dim.color }}>{dim.score}</span>
                   </div>
 
                   {/* Progress Bar */}
-                  <div style={{ width: '100%', height: '6px', background: 'rgba(255,255,255,0.06)', borderRadius: '3px', overflow: 'hidden', marginBottom: '0.6rem' }}>
+                  <div style={{ width: '100%', height: '6px', background: '#f8fafc', borderRadius: '3px', overflow: 'hidden', marginBottom: '0.6rem' }}>
                     <div style={{ width: `${dim.score}%`, height: '100%', background: dim.color, borderRadius: '3px' }} />
                   </div>
 
@@ -491,7 +491,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               <div style={{ color: '#818cf8', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>
                 Macro-Market Price Intelligence
               </div>
-              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', marginTop: '0.2rem' }}>
+              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.2rem' }}>
                 Property Value History & Locality Growth Trend (8 Quarters)
               </h2>
             </div>
@@ -504,7 +504,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
           </div>
 
           {/* SVG Trendline Chart */}
-          <div style={{ background: 'rgba(15, 23, 42, 0.6)', borderRadius: 'var(--radius-md)', padding: '1.5rem 1rem', border: '1px solid var(--border-subtle)' }}>
+          <div style={{ background: '#f8fafc', borderRadius: 'var(--radius-md)', padding: '1.5rem 1rem', border: '1px solid var(--border-subtle)' }}>
             <div style={{ height: '220px', width: '100%', position: 'relative' }}>
               <svg viewBox="0 0 800 200" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                 <defs>
@@ -571,7 +571,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               <div style={{ color: '#06b6d4', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>
                 Competitive Valuation Benchmarking
               </div>
-              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', marginTop: '0.2rem' }}>
+              <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.2rem' }}>
                 Comparable Properties in {property.locality} & Vicinity
               </h2>
             </div>
@@ -585,7 +585,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               <div 
                 key={comp.property_id}
                 style={{
-                  background: 'rgba(15, 23, 42, 0.65)',
+                  background: '#f8fafc',
                   border: '1px solid var(--border-subtle)',
                   borderRadius: 'var(--radius-md)',
                   padding: '1.1rem',
@@ -604,7 +604,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
                     </span>
                   </div>
 
-                  <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#fff', marginBottom: '0.35rem' }}>
+                  <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.35rem' }}>
                     {comp.title}
                   </h4>
 
@@ -613,7 +613,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.75rem' }}>
-                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff' }}>
+                    <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-main)' }}>
                       {formatPrice(comp.price)}
                     </div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>
@@ -656,7 +656,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
 
       {/* Property Overview Specifications */}
       <section className="glass-panel" style={{ borderRadius: 'var(--radius-lg)', padding: '2rem', marginBottom: '2.5rem' }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', marginBottom: '1.25rem' }}>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '1.25rem' }}>
           Property Overview & Characteristics
         </h2>
 
@@ -668,21 +668,21 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
         }}>
           <div>
             <div style={{ color: 'var(--text-dim)' }}>Furnishing Level</div>
-            <div style={{ fontWeight: 700, color: '#fff', textTransform: 'capitalize', marginTop: '2px' }}>
+            <div style={{ fontWeight: 700, color: 'var(--text-main)', textTransform: 'capitalize', marginTop: '2px' }}>
               {property.furnishing}
             </div>
           </div>
 
           <div>
             <div style={{ color: 'var(--text-dim)' }}>Property Age</div>
-            <div style={{ fontWeight: 700, color: '#fff', marginTop: '2px' }}>
+            <div style={{ fontWeight: 700, color: 'var(--text-main)', marginTop: '2px' }}>
               {property.property_age} Years ({property.property_age <= 1 ? 'Brand New' : 'Established'})
             </div>
           </div>
 
           <div>
             <div style={{ color: 'var(--text-dim)' }}>Parking Spaces</div>
-            <div style={{ fontWeight: 700, color: '#fff', marginTop: '2px' }}>
+            <div style={{ fontWeight: 700, color: 'var(--text-main)', marginTop: '2px' }}>
               {property.parking_spaces} Reserved Stalls
             </div>
           </div>
@@ -698,7 +698,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
         {/* Amenities Chips */}
         {property.amenities && property.amenities.length > 0 && (
           <div style={{ marginTop: '1.75rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '1.5rem' }}>
-            <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#fff', marginBottom: '0.75rem' }}>
+            <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.75rem' }}>
               Confirmed Amenities & Facilities
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
@@ -719,7 +719,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
             <div style={{ color: '#06b6d4', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>
               Natural Language Processing Module
             </div>
-            <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', marginTop: '0.2rem' }}>
+            <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.2rem' }}>
               Description & Textual Signal Analysis
             </h2>
           </div>
@@ -729,14 +729,14 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
           </div>
         </div>
 
-        <p style={{ fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: 1.7, background: 'rgba(15, 23, 42, 0.5)', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', marginBottom: '1.25rem' }}>
+        <p style={{ fontSize: '0.95rem', color: 'var(--text-main)', lineHeight: 1.7, background: '#f8fafc', padding: '1.25rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', marginBottom: '1.25rem' }}>
           {property.description}
         </p>
 
         {nlp && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', fontSize: '0.85rem' }}>
-            <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-              <strong style={{ color: '#fff' }}>Premium Extracted Tokens:</strong>
+            <div style={{ background: '#f8fafc', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+              <strong style={{ color: 'var(--text-main)' }}>Premium Extracted Tokens:</strong>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: '0.5rem' }}>
                 {(nlp.premium_keywords || ['Italian Marble', 'Penthouse', 'Panoramic']).map((kw, i) => (
                   <span key={i} className="badge badge-ai" style={{ fontSize: '0.7rem' }}>{kw}</span>
@@ -744,8 +744,8 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               </div>
             </div>
 
-            <div style={{ background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-              <strong style={{ color: '#fff' }}>Condition Indicators:</strong>
+            <div style={{ background: '#f8fafc', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+              <strong style={{ color: 'var(--text-main)' }}>Condition Indicators:</strong>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: '0.5rem' }}>
                 {(nlp.condition_indicators || ['Brand New', 'Ready to Move']).map((ci, i) => (
                   <span key={i} className="badge badge-emerald" style={{ fontSize: '0.7rem' }}>{ci}</span>
@@ -773,7 +773,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
             <div style={{ color: '#f59e0b', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>
               Spatial Intelligence & GIS Mapping
             </div>
-            <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', marginTop: '0.2rem' }}>
+            <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.2rem' }}>
               Property Coordinates & Verified Nearby POIs
             </h2>
           </div>
@@ -791,8 +791,8 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
         {/* Nearby Facilities List */}
         <div style={{ marginTop: '1.5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
           {(property.pois || []).map((poi, idx) => (
-            <div key={idx} style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', fontSize: '0.8rem' }}>
-              <div style={{ color: '#fff', fontWeight: 700 }}>{poi.name}</div>
+            <div key={idx} style={{ background: '#f8fafc', padding: '0.85rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', fontSize: '0.8rem' }}>
+              <div style={{ color: 'var(--text-main)', fontWeight: 700 }}>{poi.name}</div>
               <div style={{ color: 'var(--text-dim)', textTransform: 'capitalize', marginTop: '2px' }}>{poi.category}</div>
               <div style={{ color: '#10b981', fontWeight: 600, marginTop: '4px' }}>~{poi.distance_meters} meters away</div>
             </div>
@@ -814,7 +814,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
         <section className="glass-panel" style={{ borderRadius: 'var(--radius-lg)', padding: '2rem', marginBottom: '2.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
             <Database size={20} color="#818cf8" />
-            <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', margin: 0 }}>
+            <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)', margin: 0 }}>
               Authoritative Data Sources & Provenance Attribution
             </h2>
           </div>
@@ -832,7 +832,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
               <tbody>
                 {dataSources.sources.map((src, i) => (
                   <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-                    <td style={{ padding: '0.75rem 1rem', color: '#fff', fontWeight: 600 }}>{src.domain}</td>
+                    <td style={{ padding: '0.75rem 1rem', color: 'var(--text-main)', fontWeight: 600 }}>{src.domain}</td>
                     <td style={{ padding: '0.75rem 1rem', color: 'var(--text-main)' }}>{src.provider}</td>
                     <td style={{ padding: '0.75rem 1rem' }}>
                       <span className="badge badge-dim" style={{ fontSize: '0.7rem' }}>{src.freshness_label}</span>
@@ -873,7 +873,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
           padding: '1rem'
         }}>
           <div className="glass-panel animate-fade" style={{ width: '100%', maxWidth: '450px', padding: '2rem', borderRadius: 'var(--radius-xl)' }}>
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fff', marginBottom: '0.5rem' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.5rem' }}>
               Enquire About {property.title}
             </h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>

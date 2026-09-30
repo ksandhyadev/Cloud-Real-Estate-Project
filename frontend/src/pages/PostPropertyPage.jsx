@@ -201,7 +201,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
         <span className="badge badge-ai" style={{ marginBottom: '0.5rem' }}>
           <Sparkles size={13} /> Seller Listing Engine
         </span>
-        <h1 style={{ fontSize: '2rem', fontWeight: 800, color: '#fff' }}>Post Your Property</h1>
+        <h1 style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-main)' }}>Post Your Property</h1>
         <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
           Publish your listing with instant multimodal XGBoost valuation & SHAP explanation
         </p>
@@ -239,7 +239,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                 height: '32px',
                 borderRadius: '50%',
                 background: isCurrent ? 'var(--accent-primary)' : isDone ? 'var(--accent-emerald)' : 'rgba(255,255,255,0.1)',
-                color: '#fff',
+                color: 'var(--text-main)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -279,7 +279,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
       {/* Real-Time Seller AI Assistant & Listing Quality Audit Panel */}
       {auditResult && step < 7 && (
         <div style={{
-          background: 'rgba(15, 23, 42, 0.75)',
+          background: '#f8fafc',
           border: '1px solid rgba(99, 102, 241, 0.35)',
           borderRadius: 'var(--radius-lg)',
           padding: '1.25rem',
@@ -288,7 +288,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem', flexWrap: 'wrap', gap: '0.5rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Sparkles size={16} color="#818cf8" />
-              <span style={{ fontWeight: 700, color: '#fff', fontSize: '0.95rem' }}>
+              <span style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '0.95rem' }}>
                 Seller AI Assistant & Quality Audit
               </span>
             </div>
@@ -303,7 +303,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
           {/* Pricing check vs Locality Median */}
           {auditResult.pricing_analysis && (
             <div style={{
-              background: 'rgba(255,255,255,0.02)',
+              background: '#f8fafc',
               border: '1px solid var(--border-subtle)',
               borderRadius: 'var(--radius-sm)',
               padding: '0.6rem 0.85rem',
@@ -316,7 +316,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
               gap: '0.5rem'
             }}>
               <span>
-                Your Rate: <strong style={{ color: '#fff' }}>₹{Math.round(auditResult.pricing_analysis.listing_rate_sqft).toLocaleString()}/sq.ft</strong>
+                Your Rate: <strong style={{ color: 'var(--text-main)' }}>₹{Math.round(auditResult.pricing_analysis.listing_rate_sqft).toLocaleString()}/sq.ft</strong>
               </span>
               <span>
                 {auditResult.locality} Median: <strong style={{ color: '#818cf8' }}>₹{auditResult.pricing_analysis.locality_median_rate_sqft.toLocaleString()}/sq.ft</strong>
@@ -347,7 +347,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
         {/* STEP 1: Basic Information */}
         {step === 1 && (
           <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>Step 1: Basic Information</h3>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>Step 1: Basic Information</h3>
             
             {/* Listing Type (Sell vs Rent) */}
             <div>
@@ -388,7 +388,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                 placeholder="e.g. Prestige Lakeview 3 BHK with Lake View"
                 value={formData.title}
                 onChange={(e) => updateField('title', e.target.value)}
-                style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               />
             </div>
 
@@ -401,7 +401,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                 <select
                   value={formData.property_type}
                   onChange={(e) => updateField('property_type', e.target.value)}
-                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
                 >
                   <option value="apartment">Apartment</option>
                   <option value="villa">Villa</option>
@@ -417,7 +417,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                 <select
                   value={formData.bhk}
                   onChange={(e) => updateField('bhk', Number(e.target.value))}
-                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
                 >
                   <option value="0">0 (Plot/Commercial)</option>
                   <option value="1">1 BHK</option>
@@ -439,7 +439,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                   type="number"
                   value={formData.area_sqft}
                   onChange={(e) => updateField('area_sqft', Number(e.target.value))}
-                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
                 />
               </div>
 
@@ -451,7 +451,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                   type="number"
                   value={formData.price}
                   onChange={(e) => updateField('price', Number(e.target.value))}
-                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
                 />
               </div>
             </div>
@@ -461,7 +461,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
         {/* STEP 2: Location */}
         {step === 2 && (
           <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>Step 2: Property Location & Address</h3>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>Step 2: Property Location & Address</h3>
             
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div>
@@ -471,7 +471,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                 <select
                   value={formData.city}
                   onChange={(e) => updateField('city', e.target.value)}
-                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
                 >
                   <option value="Bangalore">Bangalore</option>
                   <option value="Mumbai">Mumbai</option>
@@ -489,7 +489,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                   placeholder="e.g. Whitefield, Indiranagar"
                   value={formData.locality}
                   onChange={(e) => updateField('locality', e.target.value)}
-                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
                 />
               </div>
             </div>
@@ -503,12 +503,12 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                 placeholder="Building Name, Cross Road, Pin Code"
                 value={formData.address}
                 onChange={(e) => updateField('address', e.target.value)}
-                style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               />
             </div>
 
-            <div style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-              <div style={{ color: '#fff', fontWeight: 600, marginBottom: '0.25rem' }}>Geospatial Coordinates Attached</div>
+            <div style={{ background: '#f8fafc', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <div style={{ color: 'var(--text-main)', fontWeight: 600, marginBottom: '0.25rem' }}>Geospatial Coordinates Attached</div>
               Latitude: <strong>{formData.latitude}</strong> | Longitude: <strong>{formData.longitude}</strong>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', marginTop: '0.3rem' }}>
                 Nearby schools, hospitals, and transit hubs will be automatically linked via Geoapify GIS spatial query.
@@ -520,7 +520,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
         {/* STEP 3: Property Details */}
         {step === 3 && (
           <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>Step 3: Property Details & Amenities</h3>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>Step 3: Property Details & Amenities</h3>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem' }}>
               <div>
@@ -531,7 +531,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                   type="number"
                   value={formData.bathrooms}
                   onChange={(e) => updateField('bathrooms', Number(e.target.value))}
-                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
                 />
               </div>
 
@@ -543,7 +543,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                   type="number"
                   value={formData.property_age}
                   onChange={(e) => updateField('property_age', Number(e.target.value))}
-                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
                 />
               </div>
 
@@ -555,7 +555,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                   type="number"
                   value={formData.parking_spaces}
                   onChange={(e) => updateField('parking_spaces', Number(e.target.value))}
-                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                  style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
                 />
               </div>
             </div>
@@ -567,7 +567,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
               <select
                 value={formData.furnishing}
                 onChange={(e) => updateField('furnishing', e.target.value)}
-                style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.75rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               >
                 <option value="unfurnished">Unfurnished</option>
                 <option value="semi-furnished">Semi-Furnished</option>
@@ -581,7 +581,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
               </label>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '0.5rem' }}>
                 {availableAmenities.map(am => (
-                  <label key={am} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: '#fff', cursor: 'pointer', background: 'rgba(255,255,255,0.03)', padding: '0.5rem', borderRadius: 'var(--radius-sm)' }}>
+                  <label key={am} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.8rem', color: 'var(--text-main)', cursor: 'pointer', background: '#f8fafc', padding: '0.5rem', borderRadius: 'var(--radius-sm)' }}>
                     <input
                       type="checkbox"
                       checked={formData.amenities.includes(am)}
@@ -599,7 +599,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
         {/* STEP 4: Images */}
         {step === 4 && (
           <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>Step 4: Property Photography</h3>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>Step 4: Property Photography</h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
               High definition photos will be evaluated by our computer vision engine for brightness, sharpness, and visual condition scoring.
             </p>
@@ -617,7 +617,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
               transition: 'border-color 0.2s ease'
             }}>
               <Upload size={36} color="#818cf8" />
-              <div style={{ fontWeight: 600, color: '#fff' }}>Click to upload property photos</div>
+              <div style={{ fontWeight: 600, color: 'var(--text-main)' }}>Click to upload property photos</div>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)' }}>Supports JPG, PNG, WEBP (Max 10MB per file)</div>
               <input
                 type="file"
@@ -631,7 +631,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
             {/* Previews */}
             {formData.previewUrls.length > 0 && (
               <div>
-                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff', marginBottom: '0.5rem' }}>
+                <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.5rem' }}>
                   Uploaded Images ({formData.previewUrls.length})
                 </div>
                 <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
@@ -649,7 +649,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
         {/* STEP 5: Description */}
         {step === 5 && (
           <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>Step 5: Property Description</h3>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>Step 5: Property Description</h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
               Our NLP module will analyze your text for luxury terms (e.g. Italian marble, private pool, vaastu, panoramic view).
             </p>
@@ -665,7 +665,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
                 background: 'var(--bg-secondary)',
                 border: '1px solid var(--border-card)',
                 borderRadius: 'var(--radius-md)',
-                color: '#fff',
+                color: 'var(--text-main)',
                 fontSize: '0.9rem',
                 lineHeight: 1.6,
                 resize: 'vertical'
@@ -681,9 +681,9 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
         {/* STEP 6: Review */}
         {step === 6 && (
           <div className="animate-fade" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fff' }}>Step 6: Review Your Listing</h3>
+            <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>Step 6: Review Your Listing</h3>
             
-            <div style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '1.5rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', fontSize: '0.85rem' }}>
+            <div style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-subtle)', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', fontSize: '0.85rem' }}>
               <div><strong>Title:</strong> {formData.title}</div>
               <div><strong>Purpose:</strong> {formData.listing_type === 'rent' ? 'For Rent' : 'For Sale'}</div>
               <div><strong>Type:</strong> <span style={{ textTransform: 'capitalize' }}>{formData.property_type}</span></div>
@@ -708,7 +708,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
             </div>
 
             <div style={{
-              background: 'rgba(15, 23, 42, 0.85)',
+              background: '#f8fafc',
               padding: '1.5rem',
               borderRadius: 'var(--radius-md)',
               border: '1px solid var(--border-subtle)',
@@ -718,7 +718,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
             }}>
               <div>
                 <div style={{ fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Your Asking Price</div>
-                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff' }}>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-main)' }}>
                   {formatPrice(formData.price, formData.listing_type)}
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
@@ -751,7 +751,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
               }}>
                 <div>
                   <span style={{ color: '#c7d2fe', fontWeight: 600 }}>Empirical Valuation Range: </span>
-                  <span style={{ color: '#fff' }}>{formatPrice(aiPreview.prediction_range.low)} – {formatPrice(aiPreview.prediction_range.high)}</span>
+                  <span style={{ color: 'var(--text-main)' }}>{formatPrice(aiPreview.prediction_range.low)} – {formatPrice(aiPreview.prediction_range.high)}</span>
                 </div>
                 {aiPreview.locality_reference && (
                   <div style={{ color: 'var(--text-dim)', fontSize: '0.75rem' }}>
@@ -763,7 +763,7 @@ export default function PostPropertyPage({ onListingCreated, onCancel }) {
 
             {/* Top Positive & Negative SHAP Drivers */}
             <div>
-              <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#fff', marginBottom: '0.6rem' }}>
+              <h4 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.6rem' }}>
                 Key Value Drivers (SHAP)
               </h4>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.8rem' }}>

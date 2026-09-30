@@ -69,7 +69,7 @@ export default function AIReportModal({ property, isOpen, onClose }) {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
               <Building2 size={24} color="#818cf8" />
-              <span style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>
+              <span style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--text-main)', letterSpacing: '-0.02em' }}>
                 Cloud Real Estate Analysis
               </span>
             </div>
@@ -90,7 +90,7 @@ export default function AIReportModal({ property, isOpen, onClose }) {
 
         {/* Property Overview */}
         <div style={{ marginBottom: '1.5rem' }}>
-          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#fff' }}>{property.title}</h2>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-main)' }}>{property.title}</h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '0.25rem' }}>
             <MapPin size={15} color="#818cf8" />
             <span>{property.locality}, {property.city} ({property.state}, {property.country})</span>
@@ -102,7 +102,7 @@ export default function AIReportModal({ property, isOpen, onClose }) {
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
           gap: '1rem',
-          background: 'rgba(15, 23, 42, 0.7)',
+          background: '#f8fafc',
           padding: '1.25rem',
           borderRadius: 'var(--radius-md)',
           border: '1px solid var(--border-subtle)',
@@ -110,7 +110,7 @@ export default function AIReportModal({ property, isOpen, onClose }) {
         }}>
           <div>
             <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Listed Asking Price</div>
-            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>
+            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-main)' }}>
               {formatPrice(property.price, property.listing_type)}
             </div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -153,7 +153,7 @@ export default function AIReportModal({ property, isOpen, onClose }) {
             alignItems: 'center'
           }}>
             <div>
-              <strong style={{ color: '#fff' }}>Empirical Valuation Range:</strong>{' '}
+              <strong style={{ color: 'var(--text-main)' }}>Empirical Valuation Range:</strong>{' '}
               <span style={{ color: '#c7d2fe' }}>{formatPrice(pred.prediction_range.low)} – {formatPrice(pred.prediction_range.high)}</span>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '2px' }}>
                 Uncertainty threshold: {pred.prediction_range.uncertainty_label}
@@ -161,7 +161,7 @@ export default function AIReportModal({ property, isOpen, onClose }) {
             </div>
             {locBench && (
               <div style={{ textAlign: 'right' }}>
-                <strong style={{ color: '#fff' }}>{locBench.locality} Benchmark:</strong>{' '}
+                <strong style={{ color: 'var(--text-main)' }}>{locBench.locality} Benchmark:</strong>{' '}
                 <span style={{ color: '#10b981' }}>₹{locBench.min_rate_sqft.toLocaleString()} – ₹{locBench.max_rate_sqft.toLocaleString()}/sq.ft</span>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-dim)', marginTop: '2px' }}>
                   Median Rate: ₹{locBench.median_rate_sqft.toLocaleString()}/sq.ft ({locBench.recent_trend_yoy})
@@ -173,10 +173,10 @@ export default function AIReportModal({ property, isOpen, onClose }) {
 
         {/* Specifications Table */}
         <div style={{ marginBottom: '1.5rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: '0.6rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.6rem' }}>
             Structured Property Specifications
           </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', fontSize: '0.8rem', background: 'rgba(255,255,255,0.02)', padding: '1rem', borderRadius: 'var(--radius-sm)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', fontSize: '0.8rem', background: '#f8fafc', padding: '1rem', borderRadius: 'var(--radius-sm)' }}>
             <div><strong>Type:</strong> <span style={{ textTransform: 'capitalize' }}>{property.property_type}</span></div>
             <div><strong>Built-up Area:</strong> {property.area_sqft} sq.ft</div>
             <div><strong>BHK:</strong> {property.bhk} BHK</div>
@@ -191,13 +191,13 @@ export default function AIReportModal({ property, isOpen, onClose }) {
         {/* Scorecard Summary */}
         {scorecard && (
           <div style={{ marginBottom: '1.5rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: '0.6rem' }}>
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.6rem' }}>
               7-Dimensional AI Property Scorecard (Overall: {scorecard.overall_score}/100)
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '0.6rem', fontSize: '0.75rem' }}>
               {scorecard.dimensions.map((dim) => (
-                <div key={dim.id} style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '0.6rem 0.8rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', color: '#fff', fontWeight: 600 }}>
+                <div key={dim.id} style={{ background: '#f8fafc', padding: '0.6rem 0.8rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-main)', fontWeight: 600 }}>
                     <span>{dim.label}</span>
                     <span style={{ color: dim.color }}>{dim.score}</span>
                   </div>
@@ -211,7 +211,7 @@ export default function AIReportModal({ property, isOpen, onClose }) {
         {/* Comparable Listings Benchmark */}
         {comparables.length > 0 && (
           <div style={{ marginBottom: '1.5rem' }}>
-            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: '0.6rem' }}>
+            <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.6rem' }}>
               Micro-Market Comparable Properties
             </h3>
             <div style={{ overflowX: 'auto' }}>
@@ -229,7 +229,7 @@ export default function AIReportModal({ property, isOpen, onClose }) {
                 <tbody>
                   {comparables.slice(0, 3).map((comp, idx) => (
                     <tr key={idx} style={{ borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-                      <td style={{ padding: '0.5rem', color: '#fff' }}>{comp.title}</td>
+                      <td style={{ padding: '0.5rem', color: 'var(--text-main)' }}>{comp.title}</td>
                       <td style={{ padding: '0.5rem' }}>{comp.bhk} BHK ({comp.area_sqft} sq.ft)</td>
                       <td style={{ padding: '0.5rem', color: '#10b981', fontWeight: 600 }}>{formatPrice(comp.price)}</td>
                       <td style={{ padding: '0.5rem' }}>₹{comp.price_per_sqft.toLocaleString()}</td>
@@ -245,7 +245,7 @@ export default function AIReportModal({ property, isOpen, onClose }) {
 
         {/* SHAP Factors */}
         <div style={{ marginBottom: '1.5rem' }}>
-          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: '#fff', marginBottom: '0.6rem' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.6rem' }}>
             SHAP Marginal Contribution Analysis
           </h3>
           <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.6rem' }}>
@@ -272,14 +272,14 @@ export default function AIReportModal({ property, isOpen, onClose }) {
 
         {/* Genuine Model Evaluation Metrics */}
         {evalMetrics && (
-          <div style={{ marginBottom: '1.5rem', background: 'rgba(15, 23, 42, 0.6)', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
-            <h3 style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff', marginBottom: '0.4rem' }}>
+          <div style={{ marginBottom: '1.5rem', background: '#f8fafc', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>
+            <h3 style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.4rem' }}>
               XGBoost 3.0 Empirical Model Validation Governance
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '0.5rem', fontSize: '0.75rem', textAlign: 'center' }}>
               <div><span style={{ color: 'var(--text-dim)' }}>R² Score:</span> <strong style={{ color: '#10b981' }}>{evalMetrics.r2_score.toFixed(4)}</strong></div>
-              <div><span style={{ color: 'var(--text-dim)' }}>MAE:</span> <strong style={{ color: '#fff' }}>₹{Math.round(evalMetrics.mae).toLocaleString()}</strong></div>
-              <div><span style={{ color: 'var(--text-dim)' }}>RMSE:</span> <strong style={{ color: '#fff' }}>₹{Math.round(evalMetrics.rmse).toLocaleString()}</strong></div>
+              <div><span style={{ color: 'var(--text-dim)' }}>MAE:</span> <strong style={{ color: 'var(--text-main)' }}>₹{Math.round(evalMetrics.mae).toLocaleString()}</strong></div>
+              <div><span style={{ color: 'var(--text-dim)' }}>RMSE:</span> <strong style={{ color: 'var(--text-main)' }}>₹{Math.round(evalMetrics.rmse).toLocaleString()}</strong></div>
               <div><span style={{ color: 'var(--text-dim)' }}>MAPE:</span> <strong style={{ color: '#10b981' }}>{evalMetrics.mape.toFixed(2)}%</strong></div>
               <div><span style={{ color: 'var(--text-dim)' }}>5-Fold CV:</span> <strong style={{ color: '#818cf8' }}>{evalMetrics.cv_5fold_r2.toFixed(4)}</strong></div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Heart, Scale, MapPin, Bed, Bath, Maximize2, ShieldCheck, Sparkles, ArrowRight } from 'lucide-react';
 import { useShortlist } from '../context/ShortlistContext';
+import { getMediaUrl } from '../services/api';
 
 export function formatPrice(val, listingType = 'buy') {
   if (!val) return 'N/A';
@@ -25,8 +26,8 @@ export default function PropertyCard({ property, onSelect, onOpenDecision }) {
     ? property.images[0].image_url 
     : 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80';
 
-  // Fix relative uploads path to absolute API host
-  const imgSrc = coverImage.startsWith('/uploads') ? `http://127.0.0.1:8000${coverImage}` : coverImage;
+  // Fix relative uploads path dynamically for local and AWS hosts
+  const imgSrc = getMediaUrl(coverImage);
 
   const deltaPct = property.price_delta_percent;
 
@@ -161,7 +162,7 @@ export default function PropertyCard({ property, onSelect, onOpenDecision }) {
         <h3 style={{
           fontSize: '1.05rem',
           fontWeight: 700,
-          color: '#fff',
+          color: 'var(--text-main)',
           marginBottom: '0.35rem',
           lineHeight: 1.35,
           overflow: 'hidden',
@@ -173,7 +174,7 @@ export default function PropertyCard({ property, onSelect, onOpenDecision }) {
 
         {/* Location */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: 'var(--text-muted)', fontSize: '0.8rem', marginBottom: '0.85rem' }}>
-          <MapPin size={14} color="#818cf8" />
+          <MapPin size={14} color="#6366f1" />
           <span>{property.locality}, {property.city}</span>
         </div>
 
@@ -191,25 +192,25 @@ export default function PropertyCard({ property, onSelect, onOpenDecision }) {
         }}>
           {property.bhk > 0 && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-              <Bed size={15} color="#94a3b8" />
+              <Bed size={15} color="#64748b" />
               <span>{property.bhk} BHK</span>
             </div>
           )}
           {property.bathrooms > 0 && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-              <Bath size={15} color="#94a3b8" />
+              <Bath size={15} color="#64748b" />
               <span>{property.bathrooms} Baths</span>
             </div>
           )}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-            <Maximize2 size={14} color="#94a3b8" />
+            <Maximize2 size={14} color="#64748b" />
             <span>{property.area_sqft} sq.ft</span>
           </div>
         </div>
 
         {/* Dual Price Comparison Card */}
         <div style={{
-          background: 'rgba(15, 23, 42, 0.6)',
+          background: 'var(--bg-secondary)',
           borderRadius: 'var(--radius-sm)',
           padding: '0.75rem',
           marginBottom: '1rem',
@@ -218,17 +219,17 @@ export default function PropertyCard({ property, onSelect, onOpenDecision }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '0.25rem' }}>
             <div>
               <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Listed Price</div>
-              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)' }}>
                 {formatPrice(property.price, property.listing_type)}
               </div>
             </div>
 
             {property.estimated_price && (
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: '0.7rem', color: '#a5b4fc', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'flex', alignItems: 'center', gap: '0.2rem', justifyContent: 'flex-end' }}>
+                <div style={{ fontSize: '0.7rem', color: 'var(--accent-primary)', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'flex', alignItems: 'center', gap: '0.2rem', justifyContent: 'flex-end' }}>
                   <Sparkles size={11} /> AI Valuation
                 </div>
-                <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#a5b4fc' }}>
+                <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--accent-primary)' }}>
                   {formatPrice(property.estimated_price, property.listing_type)}
                 </div>
               </div>
@@ -241,14 +242,14 @@ export default function PropertyCard({ property, onSelect, onOpenDecision }) {
               ₹{Math.round(property.price / Math.max(1, property.area_sqft)).toLocaleString()}/sq.ft
             </span>
             {property.confidence_indicator && (
-              <span style={{ fontSize: '0.7rem', color: '#6ee7b7', background: 'rgba(16, 185, 129, 0.12)', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: 600 }}>
+              <span style={{ fontSize: '0.7rem', color: '#059669', background: '#ecfdf5', padding: '0.1rem 0.4rem', borderRadius: '4px', fontWeight: 600 }}>
                 Confidence {Math.round(property.confidence_indicator * 100)}%
               </span>
             )}
           </div>
 
           {/* Delta & Safety tags */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.4rem', paddingTop: '0.4rem', borderTop: '1px dashed rgba(255,255,255,0.06)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.4rem', paddingTop: '0.4rem', borderTop: '1px dashed var(--border-card)' }}>
             {deltaPct !== null && deltaPct !== undefined ? (
               <span className={`badge ${deltaPct < -3 ? 'badge-emerald' : deltaPct > 5 ? 'badge-amber' : 'badge-ai'}`} style={{ fontSize: '0.7rem' }}>
                 {deltaPct < -3 ? `▼ ${Math.abs(deltaPct)}% Under Value` : deltaPct > 5 ? `▲ ${deltaPct}% Premium` : 'Market Aligned'}
@@ -256,7 +257,7 @@ export default function PropertyCard({ property, onSelect, onOpenDecision }) {
             ) : <span />}
 
             <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-              <ShieldCheck size={12} color="#10b981" /> Safety {property.safety_score || 88}/100
+              <ShieldCheck size={12} color="#059669" /> Safety {property.safety_score || 88}/100
             </span>
           </div>
         </div>

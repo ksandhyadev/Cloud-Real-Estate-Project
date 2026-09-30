@@ -83,17 +83,18 @@ export default function LeafletMapView({
           top: '12px',
           right: '12px',
           zIndex: 1000,
-          background: 'rgba(15, 23, 42, 0.9)',
+          background: 'rgba(255, 255, 255, 0.95)',
           backdropFilter: 'blur(8px)',
           padding: '0.6rem 0.8rem',
           borderRadius: 'var(--radius-md)',
-          border: '1px solid var(--border-subtle)',
+          border: '1px solid var(--border-card)',
+          boxShadow: 'var(--shadow-md)',
           display: 'flex',
           gap: '0.6rem',
           fontSize: '0.75rem'
         }}>
           {['school', 'hospital', 'transit', 'shopping'].map(cat => (
-            <label key={cat} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#fff', cursor: 'pointer', textTransform: 'capitalize' }}>
+            <label key={cat} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: 'var(--text-main)', cursor: 'pointer', textTransform: 'capitalize', fontWeight: 600 }}>
               <input 
                 type="checkbox" 
                 checked={poiFilters[cat] !== false} 
@@ -109,7 +110,7 @@ export default function LeafletMapView({
       <MapContainer 
         center={activeCenter} 
         zoom={selectedProperty ? 14 : zoom} 
-        style={{ width: '100%', height: '100%', background: '#0b1120' }}
+        style={{ width: '100%', height: '100%', background: '#e2e8f0' }}
         scrollWheelZoom={false}
       >
         <TileLayer

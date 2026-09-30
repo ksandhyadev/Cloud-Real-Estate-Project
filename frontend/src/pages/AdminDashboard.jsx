@@ -57,7 +57,7 @@ export default function AdminDashboard({ onSelectProperty }) {
         <span className="badge badge-ai" style={{ marginBottom: '0.4rem' }}>
           <Shield size={13} /> Platform Governance & Audit Panel
         </span>
-        <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff' }}>
+        <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-main)' }}>
           Administrator Console
         </h1>
         <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
@@ -77,7 +77,7 @@ export default function AdminDashboard({ onSelectProperty }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#818cf8', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>
               <Users size={16} /> Total Registered Users
             </div>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#fff', marginTop: '0.4rem' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.4rem' }}>
               {stats.total_users}
             </div>
           </div>
@@ -86,7 +86,7 @@ export default function AdminDashboard({ onSelectProperty }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#10b981', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>
               <Building2 size={16} /> Total Listings
             </div>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#fff', marginTop: '0.4rem' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.4rem' }}>
               {stats.total_properties}
             </div>
           </div>
@@ -95,7 +95,7 @@ export default function AdminDashboard({ onSelectProperty }) {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#06b6d4', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>
               <BarChart2 size={16} /> Average Listed Price
             </div>
-            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginTop: '0.4rem' }}>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-main)', marginTop: '0.4rem' }}>
               {formatPrice(stats.average_listed_price)}
             </div>
           </div>
@@ -127,17 +127,17 @@ export default function AdminDashboard({ onSelectProperty }) {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.75rem', marginBottom: '1rem', textAlign: 'center' }}>
-              <div style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '0.6rem', borderRadius: 'var(--radius-sm)' }}>
+              <div style={{ background: '#f8fafc', padding: '0.6rem', borderRadius: 'var(--radius-sm)' }}>
                 <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>R² Score</div>
                 <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#10b981' }}>{mlGov.r2_score.toFixed(4)}</div>
               </div>
 
-              <div style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '0.6rem', borderRadius: 'var(--radius-sm)' }}>
+              <div style={{ background: '#f8fafc', padding: '0.6rem', borderRadius: 'var(--radius-sm)' }}>
                 <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>MAE</div>
-                <div style={{ fontSize: '1rem', fontWeight: 700, color: '#fff' }}>₹{Math.round(mlGov.mae).toLocaleString()}</div>
+                <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)' }}>₹{Math.round(mlGov.mae).toLocaleString()}</div>
               </div>
 
-              <div style={{ background: 'rgba(15, 23, 42, 0.6)', padding: '0.6rem', borderRadius: 'var(--radius-sm)' }}>
+              <div style={{ background: '#f8fafc', padding: '0.6rem', borderRadius: 'var(--radius-sm)' }}>
                 <div style={{ fontSize: '0.7rem', color: 'var(--text-dim)' }}>5-Fold CV R²</div>
                 <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#818cf8' }}>{mlGov.cv_5fold_r2_mean.toFixed(4)}</div>
               </div>
@@ -164,8 +164,8 @@ export default function AdminDashboard({ onSelectProperty }) {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.8rem' }}>
               {health.subsystems && Object.entries(health.subsystems).map(([key, info]) => (
-                <div key={key} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(15, 23, 42, 0.5)', padding: '0.5rem 0.8rem', borderRadius: 'var(--radius-sm)' }}>
-                  <span style={{ textTransform: 'capitalize', color: '#fff' }}>{key.replace('_', ' ')}</span>
+                <div key={key} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f8fafc', padding: '0.5rem 0.8rem', borderRadius: 'var(--radius-sm)' }}>
+                  <span style={{ textTransform: 'capitalize', color: 'var(--text-main)' }}>{key.replace('_', ' ')}</span>
                   <span style={{ color: info.status === 'connected' || info.status === 'loaded' || info.status === 'operational' || info.status === 'writable' || info.status === 'live_configured' ? '#10b981' : '#f59e0b', fontWeight: 600 }}>
                     ● {info.status}
                   </span>
@@ -186,7 +186,7 @@ export default function AdminDashboard({ onSelectProperty }) {
 
       {/* Moderation Table */}
       <div className="glass-panel" style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', border: '1px solid var(--border-card)' }}>
-        <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--border-card)', fontWeight: 700, fontSize: '1rem', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--border-card)', fontWeight: 700, fontSize: '1rem', color: 'var(--text-main)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span>Listing Moderation & Integrity Queue ({properties.length})</span>
           <span className="badge badge-dim" style={{ fontSize: '0.75rem' }}>Auto-Sync Enabled</span>
         </div>
@@ -208,13 +208,13 @@ export default function AdminDashboard({ onSelectProperty }) {
               {properties.map(p => (
                 <tr key={p.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
                   <td style={{ padding: '1rem 1.5rem', color: 'var(--text-dim)' }}>#{p.id}</td>
-                  <td style={{ padding: '1rem', fontWeight: 600, color: '#fff' }}>
+                  <td style={{ padding: '1rem', fontWeight: 600, color: 'var(--text-main)' }}>
                     <div style={{ cursor: 'pointer', color: '#818cf8' }} onClick={() => onSelectProperty(p.id)}>
                       {p.title}
                     </div>
                   </td>
                   <td style={{ padding: '1rem', color: 'var(--text-muted)' }}>{p.locality}, {p.city}</td>
-                  <td style={{ padding: '1rem', fontWeight: 700, color: '#fff' }}>
+                  <td style={{ padding: '1rem', fontWeight: 700, color: 'var(--text-main)' }}>
                     {formatPrice(p.price, p.listing_type)}
                   </td>
                   <td style={{ padding: '1rem', color: '#a5b4fc', fontWeight: 600 }}>

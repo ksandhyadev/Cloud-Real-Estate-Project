@@ -16,8 +16,8 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
     }}>
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '1rem', color: '#fff' }}>
-          <Filter size={18} color="#818cf8" /> Filter Properties
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, fontSize: '1rem', color: 'var(--text-main)' }}>
+          <Filter size={18} color="var(--accent-primary)" /> Filter Properties
         </div>
         <button 
           onClick={onReset}
@@ -33,7 +33,7 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
         <label style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', color: 'var(--text-dim)', marginBottom: '0.5rem', display: 'block' }}>
           Transaction Purpose
         </label>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.35rem', background: 'rgba(15, 23, 42, 0.8)', padding: '4px', borderRadius: 'var(--radius-md)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.35rem', background: 'var(--bg-secondary)', padding: '4px', borderRadius: 'var(--radius-md)' }}>
           {['all', 'buy', 'rent'].map(type => (
             <button
               key={type}
@@ -43,7 +43,7 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
                 border: 'none',
                 borderRadius: 'var(--radius-sm)',
                 background: (filters.listing_type || 'all') === type ? 'var(--accent-primary)' : 'transparent',
-                color: (filters.listing_type || 'all') === type ? '#fff' : 'var(--text-muted)',
+                color: (filters.listing_type || 'all') === type ? '#ffffff' : 'var(--text-muted)',
                 fontWeight: 600,
                 fontSize: '0.8rem',
                 textTransform: 'capitalize',
@@ -68,10 +68,10 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
           style={{
             width: '100%',
             padding: '0.6rem 0.75rem',
-            background: 'var(--bg-secondary)',
+            background: '#ffffff',
             border: '1px solid var(--border-card)',
             borderRadius: 'var(--radius-sm)',
-            color: '#fff',
+            color: 'var(--text-main)',
             fontSize: '0.85rem'
           }}
         >
@@ -94,10 +94,10 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
           style={{
             width: '100%',
             padding: '0.6rem 0.75rem',
-            background: 'var(--bg-secondary)',
+            background: '#ffffff',
             border: '1px solid var(--border-card)',
             borderRadius: 'var(--radius-sm)',
-            color: '#fff',
+            color: 'var(--text-main)',
             fontSize: '0.85rem'
           }}
         >
@@ -124,10 +124,10 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
           style={{
             width: '100%',
             padding: '0.55rem 0.75rem',
-            background: 'var(--bg-secondary)',
+            background: '#ffffff',
             border: '1px solid var(--border-card)',
             borderRadius: 'var(--radius-sm)',
-            color: '#fff',
+            color: 'var(--text-main)',
             fontSize: '0.85rem'
           }}
         />
@@ -150,8 +150,8 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
                 border: '1px solid',
                 borderColor: (filters.bhk === bhk || (bhk === 'all' && !filters.bhk)) ? 'var(--accent-primary)' : 'var(--border-card)',
                 borderRadius: 'var(--radius-sm)',
-                background: (filters.bhk === bhk || (bhk === 'all' && !filters.bhk)) ? 'rgba(99, 102, 241, 0.2)' : 'transparent',
-                color: (filters.bhk === bhk || (bhk === 'all' && !filters.bhk)) ? '#a5b4fc' : 'var(--text-muted)',
+                background: (filters.bhk === bhk || (bhk === 'all' && !filters.bhk)) ? 'var(--accent-primary)' : '#ffffff',
+                color: (filters.bhk === bhk || (bhk === 'all' && !filters.bhk)) ? '#ffffff' : 'var(--text-muted)',
                 fontWeight: 600,
                 fontSize: '0.8rem',
                 cursor: 'pointer'
@@ -177,10 +177,10 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
             style={{
               width: '100%',
               padding: '0.55rem',
-              background: 'var(--bg-secondary)',
+              background: '#ffffff',
               border: '1px solid var(--border-card)',
               borderRadius: 'var(--radius-sm)',
-              color: '#fff',
+              color: 'var(--text-main)',
               fontSize: '0.8rem'
             }}
           />
@@ -192,10 +192,10 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
             style={{
               width: '100%',
               padding: '0.55rem',
-              background: 'var(--bg-secondary)',
+              background: '#ffffff',
               border: '1px solid var(--border-card)',
               borderRadius: 'var(--radius-sm)',
-              color: '#fff',
+              color: 'var(--text-main)',
               fontSize: '0.8rem'
             }}
           />
@@ -208,7 +208,7 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
           <label style={{ fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase', color: 'var(--text-dim)' }}>
             Min Safety Index
           </label>
-          <span style={{ fontSize: '0.75rem', color: '#10b981', fontWeight: 700 }}>
+          <span style={{ fontSize: '0.75rem', color: '#059669', fontWeight: 700 }}>
             {filters.min_safety || 70}/100
           </span>
         </div>
@@ -234,10 +234,10 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
           style={{
             width: '100%',
             padding: '0.6rem 0.75rem',
-            background: 'var(--bg-secondary)',
+            background: '#ffffff',
             border: '1px solid var(--border-card)',
             borderRadius: 'var(--radius-sm)',
-            color: '#fff',
+            color: 'var(--text-main)',
             fontSize: '0.85rem'
           }}
         >
@@ -259,10 +259,10 @@ export default function FilterSidebar({ filters, setFilters, onReset }) {
           style={{
             width: '100%',
             padding: '0.6rem 0.75rem',
-            background: 'var(--bg-secondary)',
+            background: '#ffffff',
             border: '1px solid var(--border-card)',
             borderRadius: 'var(--radius-sm)',
-            color: '#fff',
+            color: 'var(--text-main)',
             fontSize: '0.85rem'
           }}
         >

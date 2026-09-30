@@ -37,7 +37,7 @@ export default function ShortlistPage({ onSelectProperty, onNavigateSearch, onNa
           <span className="badge badge-ai" style={{ marginBottom: '0.4rem' }}>
             <Heart size={13} fill="#f43f5e" color="#f43f5e" /> Saved Properties
           </span>
-          <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#fff' }}>
+          <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-main)' }}>
             My Shortlist ({properties.length})
           </h1>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
@@ -62,7 +62,7 @@ export default function ShortlistPage({ onSelectProperty, onNavigateSearch, onNa
       ) : properties.length === 0 ? (
         <div className="glass-panel" style={{ maxWidth: '500px', margin: '3rem auto', textAlign: 'center', padding: '3.5rem 2rem', borderRadius: 'var(--radius-xl)' }}>
           <Heart size={44} color="var(--text-dim)" style={{ margin: '0 auto 1rem auto' }} />
-          <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff' }}>Your shortlist is empty</h3>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-main)' }}>Your shortlist is empty</h3>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.4rem', marginBottom: '1.5rem', lineHeight: 1.6 }}>
             Browse our listings and click the heart icon on any property card to save it here for later evaluation.
           </p>

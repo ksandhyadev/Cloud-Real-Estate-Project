@@ -1,4 +1,15 @@
-const API_BASE = "http://127.0.0.1:8000/api";
+export const API_BASE = (typeof window !== 'undefined' && window.location.port !== '5173')
+  ? `${window.location.origin}/api`
+  : "http://127.0.0.1:8000/api";
+
+export function getMediaUrl(url) {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  if (typeof window !== 'undefined' && window.location.port !== '5173') {
+    return `${window.location.origin}${url}`;
+  }
+  return `http://127.0.0.1:8000${url}`;
+}
 
 function getAuthHeader() {
   const token = localStorage.getItem("realestate_token");

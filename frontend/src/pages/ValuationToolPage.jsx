@@ -62,7 +62,7 @@ export default function ValuationToolPage() {
         <span className="badge badge-ai" style={{ marginBottom: '0.5rem' }}>
           <Cpu size={14} /> Interactive Machine Learning Sandbox
         </span>
-        <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#fff' }}>
+        <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--text-main)' }}>
           Real-Time AI Property Valuator
         </h1>
         <p style={{ fontSize: '0.95rem', color: 'var(--text-muted)', maxWidth: '650px', margin: '0.5rem auto 0 auto', lineHeight: 1.6 }}>
@@ -81,7 +81,7 @@ export default function ValuationToolPage() {
         
         {/* Form Column */}
         <form onSubmit={handlePredict} className="glass-panel" style={{ padding: '2rem', borderRadius: 'var(--radius-xl)', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-main)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
             Input Property Specifications
           </h3>
 
@@ -93,7 +93,7 @@ export default function ValuationToolPage() {
               <select
                 value={params.property_type}
                 onChange={(e) => updateParam('property_type', e.target.value)}
-                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               >
                 <option value="apartment">Apartment / Flat</option>
                 <option value="villa">Luxury Villa</option>
@@ -109,7 +109,7 @@ export default function ValuationToolPage() {
               <select
                 value={params.locality}
                 onChange={(e) => updateParam('locality', e.target.value)}
-                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               >
                 <option value="Whitefield">Whitefield (Bangalore)</option>
                 <option value="Indiranagar">Indiranagar (Bangalore)</option>
@@ -129,7 +129,7 @@ export default function ValuationToolPage() {
                 type="number"
                 value={params.area_sqft}
                 onChange={(e) => updateParam('area_sqft', Number(e.target.value))}
-                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               />
             </div>
 
@@ -143,7 +143,7 @@ export default function ValuationToolPage() {
                 max="6"
                 value={params.bhk}
                 onChange={(e) => updateParam('bhk', Number(e.target.value))}
-                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               />
             </div>
 
@@ -157,7 +157,7 @@ export default function ValuationToolPage() {
                 max="6"
                 value={params.bathrooms}
                 onChange={(e) => updateParam('bathrooms', Number(e.target.value))}
-                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               />
             </div>
           </div>
@@ -173,7 +173,7 @@ export default function ValuationToolPage() {
                 max="30"
                 value={params.property_age}
                 onChange={(e) => updateParam('property_age', Number(e.target.value))}
-                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               />
             </div>
 
@@ -184,7 +184,7 @@ export default function ValuationToolPage() {
               <select
                 value={params.furnishing}
                 onChange={(e) => updateParam('furnishing', e.target.value)}
-                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff' }}
+                style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)' }}
               >
                 <option value="unfurnished">Unfurnished</option>
                 <option value="semi-furnished">Semi-Furnished</option>
@@ -202,7 +202,7 @@ export default function ValuationToolPage() {
               rows={3}
               value={params.description}
               onChange={(e) => updateParam('description', e.target.value)}
-              style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: '#fff', fontSize: '0.85rem' }}
+              style={{ width: '100%', padding: '0.65rem', background: 'var(--bg-secondary)', border: '1px solid var(--border-card)', borderRadius: 'var(--radius-sm)', color: 'var(--text-main)', fontSize: '0.85rem' }}
             />
           </div>
 
@@ -213,7 +213,7 @@ export default function ValuationToolPage() {
             </label>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.4rem' }}>
               {availableAmenities.map(am => (
-                <label key={am} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', color: '#fff', cursor: 'pointer' }}>
+                <label key={am} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.75rem', color: 'var(--text-main)', cursor: 'pointer' }}>
                   <input
                     type="checkbox"
                     checked={params.amenities.includes(am)}
@@ -244,7 +244,7 @@ export default function ValuationToolPage() {
               XGBoost Regressor Valuation
             </div>
             
-            <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#ffffff', fontFamily: 'var(--font-heading)' }}>
+            <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--text-main)', fontFamily: 'var(--font-heading)' }}>
               {predictionResult ? formatPrice(predictionResult.predicted_price) : formatPrice(18500000)}
             </div>
 
@@ -264,7 +264,7 @@ export default function ValuationToolPage() {
 
           {/* Quick Guidance Info */}
           <div className="glass-panel" style={{ padding: '1.5rem', borderRadius: 'var(--radius-lg)', fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-            <h4 style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.5rem' }}>
+            <h4 style={{ color: 'var(--text-main)', fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.5rem' }}>
               How the Regressor Computes This
             </h4>
             The model builds 180 decision trees taking into account spatial locality coefficients, 
