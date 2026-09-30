@@ -278,170 +278,227 @@ DEMO_PROPERTIES = [
             "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80"
         ],
         "amenities": ["Power Backup", "Gymnasium", "Covered Parking", "24x7 Security", "Children Play Area"]
+    },
+    {
+        "title": "Prestige Sunrise Park Contemporary 2 BHK",
+        "description": "Smart contemporary 2 BHK residence in Prestige Sunrise Park, Electronic City Phase 1. Walking distance to Infosys Campus and Neo Town. Features vitrified tile flooring, modular granite kitchen, cross-ventilated balcony overlooking clubhouse amenities, 24x7 power backup, and dedicated covered car parking.",
+        "listing_type": "buy",
+        "property_type": "apartment",
+        "price": 8200000.0,
+        "area_sqft": 1150.0,
+        "bhk": 2,
+        "bathrooms": 2,
+        "furnishing": "semi-furnished",
+        "property_age": 2,
+        "parking_spaces": 1,
+        "country": "India",
+        "state": "Karnataka",
+        "city": "Bangalore",
+        "locality": "Electronic City",
+        "address": "Neeladri Road, Electronic City Phase 1, Bangalore 560100",
+        "latitude": 12.8452,
+        "longitude": 77.6602,
+        "images": [
+            "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "amenities": ["Swimming Pool", "Gymnasium", "Clubhouse", "24x7 Security", "Covered Parking", "Power Backup", "Jogging Track", "Children Play Area"]
+    },
+    {
+        "title": "Godrej Nurture High-Rise 3 BHK Sky Residence",
+        "description": "Ultra-modern 3 BHK sky apartment in Godrej Nurture, Electronic City Phase 1 near elevated expressway. Boasts smart home automation, designer modular kitchen, expansive deck with unobstructed skyline views, rooftop infinity pool, multi-tier biometric security, and dedicated EV charging station.",
+        "listing_type": "buy",
+        "property_type": "apartment",
+        "price": 13500000.0,
+        "area_sqft": 1650.0,
+        "bhk": 3,
+        "bathrooms": 3,
+        "furnishing": "semi-furnished",
+        "property_age": 1,
+        "parking_spaces": 2,
+        "country": "India",
+        "state": "Karnataka",
+        "city": "Bangalore",
+        "locality": "Electronic City",
+        "address": "Hosur Road, Electronic City Phase 1, Bangalore 560100",
+        "latitude": 12.8399,
+        "longitude": 77.6770,
+        "images": [
+            "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80"
+        ],
+        "amenities": ["Smart Home", "Infinity Pool", "Clubhouse", "24x7 Security", "Jogging Track", "Power Backup", "EV Charging", "Gymnasium"]
     }
 ]
+
+def seed_single_property(prop_dict: dict, seller_id: int, db: Session):
+    existing = db.query(Property).filter(Property.title == prop_dict["title"]).first()
+    if existing:
+        return existing
+
+    # 1. Create property
+    prop = Property(
+        owner_id=seller_id,
+        title=prop_dict["title"],
+        description=prop_dict["description"],
+        listing_type=prop_dict["listing_type"],
+        property_type=prop_dict["property_type"],
+        price=prop_dict["price"],
+        area_sqft=prop_dict["area_sqft"],
+        bhk=prop_dict["bhk"],
+        bathrooms=prop_dict.get("bathrooms", 2),
+        furnishing=prop_dict.get("furnishing", "semi-furnished"),
+        property_age=prop_dict.get("property_age", 1),
+        parking_spaces=prop_dict.get("parking_spaces", 1),
+        country=prop_dict.get("country", "India"),
+        state=prop_dict.get("state", "Karnataka"),
+        city=prop_dict.get("city", "Bangalore"),
+        locality=prop_dict.get("locality", "Whitefield"),
+        address=prop_dict.get("address", "Bangalore, Karnataka"),
+        latitude=prop_dict.get("latitude", 12.9716),
+        longitude=prop_dict.get("longitude", 77.5946),
+        status="approved"
+    )
+    db.add(prop)
+    db.commit()
+    db.refresh(prop)
+
+    # 2. Add images
+    for idx, img_url in enumerate(prop_dict["images"]):
+        db.add(PropertyImage(
+            property_id=prop.id,
+            image_url=img_url,
+            is_cover=(idx == 0),
+            visual_condition_score=8.7,
+            quality_score=9.1,
+            tags_json=json.dumps(["High Quality", "Natural Light", "Modern Architecture"])
+        ))
+
+    # 3. Add amenities
+    for am in prop_dict["amenities"]:
+        db.add(PropertyAmenity(property_id=prop.id, amenity_name=am))
+
+    # 4. NLP Analysis
+    nlp_res = nlp_engine.analyze_description(prop_dict["description"])
+    db.add(NlpAnalysis(
+        property_id=prop.id,
+        luxury_score=nlp_res["luxury_score"],
+        extracted_amenities_json=json.dumps(nlp_res["extracted_amenities"]),
+        condition_indicators_json=json.dumps(nlp_res["condition_indicators"]),
+        premium_keywords_json=json.dumps(nlp_res["premium_keywords"]),
+        summary=nlp_res["summary"]
+    ))
+
+    # 5. Safety Indicators
+    safety_res = safety_service.get_safety_metrics(locality=prop.locality, city=prop.city)
+    db.add(SafetyIndicator(
+        property_id=prop.id,
+        safety_index=safety_res["safety_index"],
+        crime_rating=safety_res["crime_rating"],
+        flood_risk=safety_res["flood_risk"],
+        traffic_congestion=safety_res["traffic_congestion"],
+        data_source=safety_res["data_source"]
+    ))
+
+    # 6. XGBoost Prediction & SHAP Explainability
+    feat_df = xgboost_engine.prepare_feature_vector(
+        area_sqft=prop.area_sqft,
+        bhk=prop.bhk,
+        bathrooms=prop.bathrooms,
+        property_age=prop.property_age,
+        parking_spaces=prop.parking_spaces,
+        property_type=prop.property_type,
+        furnishing=prop.furnishing,
+        locality=prop.locality,
+        amenities=prop_dict["amenities"],
+        description=prop.description,
+        safety_score=safety_res["safety_index"]
+    )
+    
+    # Predict
+    pred_res = xgboost_engine.predict(feat_df)
+    db.add(PropertyPrediction(
+        property_id=prop.id,
+        estimated_price=pred_res["predicted_price"],
+        price_per_sqft=pred_res["price_per_sqft"],
+        confidence_indicator=pred_res["confidence_indicator"],
+        model_version=pred_res["model_version"]
+    ))
+
+    # SHAP
+    shap_res = shap_engine.explain(feat_df)
+    db.add(ShapExplanation(
+        property_id=prop.id,
+        base_value=shap_res["base_value"],
+        shap_values_json=json.dumps(shap_res["shap_values_dict"]),
+        feature_names_json=json.dumps(list(feat_df.columns)),
+        feature_values_json=json.dumps(feat_df.iloc[0].to_dict())
+    ))
+
+    # 7. POIs
+    pois = poi_service.get_nearby_pois(prop.latitude, prop.longitude, prop.city)
+    for p in pois:
+        db.add(PoiData(
+            property_id=prop.id,
+            category=p["category"],
+            name=p["name"],
+            distance_meters=p["distance_meters"],
+            latitude=p.get("latitude"),
+            longitude=p.get("longitude"),
+            source=p.get("source", "Geoapify")
+        ))
+
+    db.commit()
+    return prop
 
 def seed_database():
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     try:
-        # Check if already seeded
-        if db.query(User).count() > 0:
-            print("Database already contains users. Skipping duplicate seeding.")
-            return
+        # Check / create initial users
+        seller = db.query(User).filter(User.role == "seller").first()
+        buyer = db.query(User).filter(User.role == "buyer").first()
 
-        print("Seeding initial users (admin, seller, buyer)...")
-        admin = User(
-            email="admin@realestate.ai",
-            hashed_password=get_password_hash("Admin@12345"),
-            full_name="Platform Administrator",
-            role="admin",
-            phone="+91 9876543210"
-        )
-        seller = User(
-            email="seller@realestate.ai",
-            hashed_password=get_password_hash("Seller@12345"),
-            full_name="Rajesh Sharma (Verified Seller)",
-            role="seller",
-            phone="+91 9845012345"
-        )
-        buyer = User(
-            email="buyer@realestate.ai",
-            hashed_password=get_password_hash("Buyer@12345"),
-            full_name="Priya Patel (Home Seeker)",
-            role="buyer",
-            phone="+91 9731054321"
-        )
-        db.add_all([admin, seller, buyer])
-        db.commit()
-        db.refresh(seller)
-        db.refresh(buyer)
+        if not seller or not buyer:
+            print("Seeding initial users (admin, seller, buyer)...")
+            admin = User(
+                email="admin@realestate.ai",
+                hashed_password=get_password_hash("Admin@12345"),
+                full_name="Platform Administrator",
+                role="admin",
+                phone="+91 9876543210"
+            )
+            seller = User(
+                email="seller@realestate.ai",
+                hashed_password=get_password_hash("Seller@12345"),
+                full_name="Rajesh Sharma (Verified Seller)",
+                role="seller",
+                phone="+91 9845012345"
+            )
+            buyer = User(
+                email="buyer@realestate.ai",
+                hashed_password=get_password_hash("Buyer@12345"),
+                full_name="Priya Patel (Home Seeker)",
+                role="buyer",
+                phone="+91 9731054321"
+            )
+            db.add_all([admin, seller, buyer])
+            db.commit()
+            db.refresh(seller)
+            db.refresh(buyer)
 
-        print("Seeding demo properties and running multimodal AI evaluations...")
+        print("Checking demo properties and seeding missing records...")
+        new_seeded_count = 0
         for prop_dict in DEMO_PROPERTIES:
-            # 1. Create property
-            prop = Property(
-                owner_id=seller.id,
-                title=prop_dict["title"],
-                description=prop_dict["description"],
-                listing_type=prop_dict["listing_type"],
-                property_type=prop_dict["property_type"],
-                price=prop_dict["price"],
-                area_sqft=prop_dict["area_sqft"],
-                bhk=prop_dict["bhk"],
-                bathrooms=prop_dict.get("bathrooms", 2),
-                furnishing=prop_dict.get("furnishing", "semi-furnished"),
-                property_age=prop_dict.get("property_age", 1),
-                parking_spaces=prop_dict.get("parking_spaces", 1),
-                country=prop_dict.get("country", "India"),
-                state=prop_dict.get("state", "Karnataka"),
-                city=prop_dict.get("city", "Bangalore"),
-                locality=prop_dict.get("locality", "Whitefield"),
-                address=prop_dict.get("address", "Bangalore, Karnataka"),
-                latitude=prop_dict.get("latitude", 12.9716),
-                longitude=prop_dict.get("longitude", 77.5946),
-                status="approved"
-            )
-            db.add(prop)
-            db.commit()
-            db.refresh(prop)
+            existing = db.query(Property).filter(Property.title == prop_dict["title"]).first()
+            if not existing:
+                seed_single_property(prop_dict, seller.id, db)
+                new_seeded_count += 1
 
-            # 2. Add images
-            for idx, img_url in enumerate(prop_dict["images"]):
-                db.add(PropertyImage(
-                    property_id=prop.id,
-                    image_url=img_url,
-                    is_cover=(idx == 0),
-                    visual_condition_score=8.7,
-                    quality_score=9.1,
-                    tags_json=json.dumps(["High Quality", "Natural Light", "Modern Architecture"])
-                ))
-
-            # 3. Add amenities
-            for am in prop_dict["amenities"]:
-                db.add(PropertyAmenity(property_id=prop.id, amenity_name=am))
-
-            # 4. NLP Analysis
-            nlp_res = nlp_engine.analyze_description(prop_dict["description"])
-            db.add(NlpAnalysis(
-                property_id=prop.id,
-                luxury_score=nlp_res["luxury_score"],
-                extracted_amenities_json=json.dumps(nlp_res["extracted_amenities"]),
-                condition_indicators_json=json.dumps(nlp_res["condition_indicators"]),
-                premium_keywords_json=json.dumps(nlp_res["premium_keywords"]),
-                summary=nlp_res["summary"]
-            ))
-
-            # 5. Safety Indicators
-            safety_res = safety_service.get_safety_metrics(locality=prop.locality, city=prop.city)
-            db.add(SafetyIndicator(
-                property_id=prop.id,
-                safety_index=safety_res["safety_index"],
-                crime_rating=safety_res["crime_rating"],
-                flood_risk=safety_res["flood_risk"],
-                traffic_congestion=safety_res["traffic_congestion"],
-                data_source=safety_res["data_source"]
-            ))
-
-            # 6. XGBoost Prediction & SHAP Explainability
-            feat_df = xgboost_engine.prepare_feature_vector(
-                area_sqft=prop.area_sqft,
-                bhk=prop.bhk,
-                bathrooms=prop.bathrooms,
-                property_age=prop.property_age,
-                parking_spaces=prop.parking_spaces,
-                property_type=prop.property_type,
-                furnishing=prop.furnishing,
-                locality=prop.locality,
-                amenities=prop_dict["amenities"],
-                description=prop.description,
-                safety_score=safety_res["safety_index"]
-            )
-            
-            # Predict
-            pred_res = xgboost_engine.predict(feat_df)
-            db.add(PropertyPrediction(
-                property_id=prop.id,
-                estimated_price=pred_res["predicted_price"],
-                price_per_sqft=pred_res["price_per_sqft"],
-                confidence_indicator=pred_res["confidence_indicator"],
-                model_version=pred_res["model_version"]
-            ))
-
-            # SHAP
-            shap_res = shap_engine.explain(feat_df)
-            db.add(ShapExplanation(
-                property_id=prop.id,
-                base_value=shap_res["base_value"],
-                shap_values_json=json.dumps(shap_res["shap_values_dict"]),
-                feature_names_json=json.dumps(list(feat_df.columns)),
-                feature_values_json=json.dumps(feat_df.iloc[0].to_dict())
-            ))
-
-            # 7. POIs
-            pois = poi_service.get_nearby_pois(prop.latitude, prop.longitude, prop.city)
-            for p in pois:
-                db.add(PoiData(
-                    property_id=prop.id,
-                    category=p["category"],
-                    name=p["name"],
-                    distance_meters=p["distance_meters"],
-                    latitude=p.get("latitude"),
-                    longitude=p.get("longitude"),
-                    source=p.get("source", "Geoapify")
-                ))
-
-            db.commit()
-
-        # Seed initial notification for buyer
-        db.add(Notification(
-            user_id=buyer.id,
-            title="AI Property Intelligence Ready",
-            message="Explore explainable property valuations with SHAP decomposition on Sobha Windsor and Palm Meadows.",
-            type="info"
-        ))
-        db.commit()
-        print("Database seeding completed successfully!")
+        print(f"Seeding check complete. Added {new_seeded_count} new properties.")
+        print("Database seeding verified successfully!")
 
     finally:
         db.close()

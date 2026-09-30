@@ -104,6 +104,7 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
   };
 
   const samplePrompts = [
+    "2 BHK in Electronic City under 90 lakh",
     "2 BHK in Whitefield under 90 lakh near metro",
     "Villa in Indiranagar under 3.5 cr",
     "3 BHK rent in HSR Layout under 50k",
@@ -319,11 +320,32 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
             <div className="glass-panel" style={{ textAlign: 'center', padding: '4rem 2rem', borderRadius: 'var(--radius-lg)' }}>
               <SearchIcon size={48} color="var(--text-dim)" style={{ margin: '0 auto 1rem auto' }} />
               <h3 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-main)' }}>No properties matched your criteria</h3>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.4rem', maxWidth: '400px', margin: '0.4rem auto 1.5rem auto' }}>
-                Try adjusting your budget, BHK configuration, or clearing specific filters to see more listings.
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.4rem', maxWidth: '460px', margin: '0.4rem auto 1.25rem auto' }}>
+                Try exploring our verified micro-markets with pre-evaluated XGBoost valuations & Gemini summaries:
               </p>
+              
+              <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.75rem' }}>
+                {['Electronic City', 'Whitefield', 'Indiranagar', 'HSR Layout', 'Koramangala'].map((loc, idx) => (
+                  <button
+                    key={idx}
+                    className="badge badge-dim"
+                    style={{ cursor: 'pointer', padding: '0.4rem 0.8rem', border: '1px solid var(--border-card)', fontSize: '0.8rem' }}
+                    onClick={() => {
+                      setSmartPrompt(loc);
+                      api.smartSearch(loc).then(res => {
+                        setProperties(res.results || []);
+                        setSmartTokens(res.parser_output?.matched_tokens || []);
+                        setSmartSearchActive(true);
+                      });
+                    }}
+                  >
+                    📍 {loc}
+                  </button>
+                ))}
+              </div>
+
               <button className="btn btn-secondary" onClick={handleResetFilters}>
-                Reset All Filters
+                <RotateCcw size={14} /> Reset All Filters
               </button>
             </div>
           ) : viewMode === 'grid' ? (

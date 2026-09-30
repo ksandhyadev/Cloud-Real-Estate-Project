@@ -733,6 +733,23 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
           {property.description}
         </p>
 
+        {nlp?.summary && (
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(168, 85, 247, 0.06))',
+            border: '1px solid rgba(99, 102, 241, 0.2)',
+            borderRadius: 'var(--radius-md)',
+            padding: '1.2rem',
+            marginBottom: '1.25rem'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', color: '#4f46e5', fontWeight: 700, fontSize: '0.85rem', marginBottom: '0.35rem' }}>
+              <Sparkles size={15} /> Google Gemini AI Executive Summary
+            </div>
+            <p style={{ fontSize: '0.92rem', color: 'var(--text-main)', lineHeight: 1.6, margin: 0, fontStyle: 'italic' }}>
+              "{nlp.summary}"
+            </p>
+          </div>
+        )}
+
         {nlp && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1rem', fontSize: '0.85rem' }}>
             <div style={{ background: '#f8fafc', padding: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-subtle)' }}>

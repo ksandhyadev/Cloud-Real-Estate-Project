@@ -51,11 +51,17 @@ def root():
         "api_prefix": settings.API_PREFIX
     }
 
+@app.get("/api/gemini/status")
+def gemini_status():
+    from app.services.gemini_service import gemini_service
+    return gemini_service.ping()
+
 @app.get("/api/health")
 def health_check():
     from sqlalchemy import text
     from app.database import SessionLocal
     from app.ml.xgboost_engine import xgboost_engine
+    from app.services.gemini_service import gemini_service
     
     # 1. Database check
     db_ok = False
@@ -76,6 +82,9 @@ def health_check():
     # 4. External Geoapify API status (Safe key verification)
     geo_configured = bool(settings.GEOAPIFY_API_KEY and len(settings.GEOAPIFY_API_KEY) > 5)
 
+    # 5. Google Gemini LLM API status
+    gemini_configured = gemini_service.is_configured()
+
     all_healthy = db_ok and ml_ok and storage_ok
 
     return {
@@ -85,6 +94,11 @@ def health_check():
             "ml_engine": {
                 "status": "loaded" if ml_ok else "unavailable", 
                 "version": xgboost_engine.metadata.get("model_version", "XGBoost-v2.2-Production") if xgboost_engine.metadata else "Pending"
+            },
+            "gemini_llm": {
+                "status": "configured_and_active" if gemini_configured else "academic_local_nlp",
+                "api_active": gemini_configured,
+                "provider": "Google AI Studio (Gemini Flash)"
             },
             "shap_explainer": {"status": "operational", "method": "TreeExplainer"},
             "storage": {"status": "writable" if storage_ok else "read-only", "path": str(settings.UPLOAD_DIR)},
