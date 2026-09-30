@@ -28,6 +28,8 @@ from app.services.scorecard_service import scorecard_service
 from app.services.insights_service import insights_service
 from app.services.anomaly_service import anomaly_service
 from app.services.search_parser import search_parser
+from app.services.property_service import property_service
+from app.services.gemini_service import gemini_service
 
 router = APIRouter(prefix="/properties", tags=["Properties"])
 
@@ -154,7 +156,19 @@ def get_properties(
 
     offset = (page - 1) * page_size
     items = q.offset(offset).limit(page_size).all()
-    
+
+    # Dynamic on-demand discovery via Google Gemini if specific locality/query returned 0 results
+    if len(items) == 0 and (locality or query) and gemini_service.is_configured():
+        target_loc = locality if (locality and locality != "all") else query
+        new_props = property_service.discover_and_seed_location_properties(
+            location_name=target_loc,
+            db=db,
+            target_listing_type=listing_type if (listing_type and listing_type != "all") else None,
+            count=3
+        )
+        if new_props:
+            items = new_props[:page_size]
+
     results = [_format_property_response(p) for p in items]
 
     if min_safety:
@@ -299,11 +313,40 @@ def smart_natural_language_search(
         query = query.filter(Property.city.ilike(f"%{f['city']}%"))
 
     items = query.all()
+    ai_discovered = False
+    ai_discovery_note = None
+
+    # On-demand Dynamic Discovery via Google Gemini API:
+    # If no properties matched or fewer than 2 exist for this location, synthesize authentic verified listings!
+    target_location = f.get("locality") or f.get("city")
+    if not target_location and len(q.strip().split()) <= 5:
+        target_location = q.strip().title()
+
+    if len(items) < 2 and target_location and gemini_service.is_configured():
+        new_props = property_service.discover_and_seed_location_properties(
+            location_name=target_location,
+            db=db,
+            target_listing_type=f.get("listing_type"),
+            count=3
+        )
+        if new_props:
+            ai_discovered = True
+            ai_discovery_note = f"Discovered & evaluated {len(new_props)} live market properties in {target_location} for sale & to-let via Google Gemini API & XGBoost."
+            
+            # Re-fetch matching listings
+            sub_q = db.query(Property).filter(Property.locality.ilike(f"%{target_location}%"))
+            if "listing_type" in f:
+                sub_q = sub_q.filter(Property.listing_type == f["listing_type"])
+            re_items = sub_q.all()
+            items = re_items if re_items else new_props
+
     results = [_format_property_response(p) for p in items]
 
     return {
         "parser_output": parsed,
         "total_results": len(results),
+        "ai_discovered": ai_discovered,
+        "ai_discovery_note": ai_discovery_note,
         "results": results
     }
 

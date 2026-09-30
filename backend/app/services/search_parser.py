@@ -17,13 +17,43 @@ LOCALITY_KEYWORDS = {
     "sarjapur": "Sarjapur Road",
     "sarjapur road": "Sarjapur Road",
     "electronic city": "Electronic City",
+    "electronic city phase 1": "Electronic City",
+    "electronic city phase 2": "Electronic City",
     "hebbal": "Hebbal",
     "jayanagar": "Jayanagar",
+    "jp nagar": "JP Nagar",
+    "j p nagar": "JP Nagar",
+    "btm": "BTM Layout",
+    "btm layout": "BTM Layout",
+    "marathahalli": "Marathahalli",
+    "yelahanka": "Yelahanka",
+    "banashankari": "Banashankari",
+    "malleshwaram": "Malleshwaram",
+    "rajajinagar": "Rajajinagar",
+    "kalyan nagar": "Kalyan Nagar",
+    "kammanahalli": "Kammanahalli",
+    "thanisandra": "Thanisandra",
+    "hennur": "Hennur",
+    "kanakapura road": "Kanakapura Road",
+    "bannerghatta road": "Bannerghatta Road",
+    "richmond town": "Richmond Town",
+    "mg road": "MG Road",
     "gokulam": "Gokulam",
     "kadri": "Kadri",
     "bandra": "Bandra West",
+    "andheri": "Andheri West",
+    "powai": "Powai",
+    "juhu": "Juhu",
+    "worli": "Worli",
     "hauz khas": "Hauz Khas",
-    "gachibowli": "Gachibowli"
+    "saket": "Saket",
+    "dwarka": "Dwarka",
+    "vasant kunj": "Vasant Kunj",
+    "gachibowli": "Gachibowli",
+    "hitec city": "HITEC City",
+    "kondapur": "Kondapur",
+    "madhapur": "Madhapur",
+    "jubilee hills": "Jubilee Hills"
 }
 
 CITY_KEYWORDS = {
@@ -35,7 +65,12 @@ CITY_KEYWORDS = {
     "mangaluru": "Mangalore",
     "mumbai": "Mumbai",
     "delhi": "Delhi",
-    "hyderabad": "Hyderabad"
+    "hyderabad": "Hyderabad",
+    "pune": "Pune",
+    "chennai": "Chennai",
+    "kolkata": "Kolkata",
+    "noida": "Noida",
+    "gurgaon": "Gurgaon"
 }
 
 class SearchParser:
@@ -53,12 +88,12 @@ class SearchParser:
             matched_tokens.append(f"{bhk_val} BHK")
 
         # 2. Listing Type (buy vs rent)
-        if re.search(r'\b(rent|rental|lease|to let)\b', q):
+        if re.search(r'\b(rent|rental|lease|to let|to-let|pg|tenant)\b', q):
             filters["listing_type"] = "rent"
-            matched_tokens.append("Rent")
-        elif re.search(r'\b(buy|sale|purchase|invest)\b', q):
+            matched_tokens.append("Rent (To-Let)")
+        elif re.search(r'\b(buy|sale|purchase|invest|owner)\b', q):
             filters["listing_type"] = "buy"
-            matched_tokens.append("Buy")
+            matched_tokens.append("Buy (For Sale)")
 
         # 3. Property Type
         if re.search(r'\b(villa)\b', q):
@@ -115,12 +150,31 @@ class SearchParser:
                     filters["max_price"] = val
                     matched_tokens.append(f"Budget ≤ ₹{val:,.0f}")
 
-        # 5. Locality Extraction
+        # 5. Locality Extraction (priority keyword mapping)
         for kw, canonical in LOCALITY_KEYWORDS.items():
             if re.search(rf'\b{kw}\b', q):
                 filters["locality"] = canonical
                 matched_tokens.append(canonical)
                 break
+
+        # Open-ended location extraction if not in dictionary
+        if "locality" not in filters:
+            # Check pattern: in <place>, at <place>, near <place>
+            loc_match = re.search(r'\b(?:in|at|near|around)\s+([a-zA-Z0-9\s]{3,35}?)(?:\s+(?:under|below|less|for|with|near|budget|\d+bhk|flat|apartment|villa|house|bhk)|$)', q)
+            if loc_match:
+                extracted = loc_match.group(1).strip().title()
+                if extracted.lower() not in ["the", "a", "bangalore", "mumbai", "delhi", "hyderabad", "city", "town", "metro"]:
+                    filters["locality"] = extracted
+                    matched_tokens.append(extracted)
+
+        # If still no locality, check if query minus tokens leaves a location name
+        if "locality" not in filters:
+            cleaned = re.sub(r'\b(\d+\s*bhk|bedroom|bed|rent|rental|to let|to-let|buy|sale|villa|apartment|flat|house|plot|under|below|less than|budget of|cr|crore|crores|lakh|lakhs|lac|lacs|k|thousand|₹|\d+)\b', '', q)
+            cleaned = re.sub(r'\b(in|at|near|around|with|for)\b', '', cleaned).strip()
+            cleaned = ' '.join(cleaned.split())
+            if len(cleaned) >= 3 and cleaned.lower() not in ["properties", "property", "house", "houses", "home", "homes", "all"]:
+                filters["locality"] = cleaned.title()
+                matched_tokens.append(cleaned.title())
 
         # 6. City Extraction
         for kw, canonical in CITY_KEYWORDS.items():

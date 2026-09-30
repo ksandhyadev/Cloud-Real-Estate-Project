@@ -42,6 +42,7 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
   const [smartPrompt, setSmartPrompt] = useState('');
   const [smartSearchActive, setSmartSearchActive] = useState(false);
   const [smartTokens, setSmartTokens] = useState([]);
+  const [aiDiscoveryMsg, setAiDiscoveryMsg] = useState('');
 
   const fetchProperties = async () => {
     setLoading(true);
@@ -78,6 +79,11 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
       setProperties(res.results || []);
       setSmartTokens(res.parser_output?.matched_tokens || []);
       setSmartSearchActive(true);
+      if (res.ai_discovered && res.ai_discovery_note) {
+        setAiDiscoveryMsg(res.ai_discovery_note);
+      } else {
+        setAiDiscoveryMsg('');
+      }
     } catch (err) {
       console.error("Smart search error:", err);
       setFetchError("Natural language search failed: " + err.message);
@@ -90,6 +96,7 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
     setSmartPrompt('');
     setSmartSearchActive(false);
     setSmartTokens([]);
+    setAiDiscoveryMsg('');
     fetchProperties();
   };
 
@@ -98,6 +105,7 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
     setSmartPrompt('');
     setSmartSearchActive(false);
     setSmartTokens([]);
+    setAiDiscoveryMsg('');
     try {
       sessionStorage.removeItem('realestate_search_filters');
     } catch (e) {}
@@ -300,10 +308,39 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
 
         {/* Right Column: Search Results */}
         <main>
+          {/* Real-time Dynamic AI Discovery Banner */}
+          {aiDiscoveryMsg && !loading && (
+            <div style={{
+              background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.08))',
+              border: '1px solid rgba(99, 102, 241, 0.25)',
+              borderRadius: 'var(--radius-md)',
+              padding: '0.9rem 1.25rem',
+              marginBottom: '1.5rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem'
+            }}>
+              <Sparkles size={20} color="#4f46e5" />
+              <div>
+                <div style={{ fontSize: '0.88rem', color: 'var(--text-main)', fontWeight: 700 }}>
+                  Live AI Market Discovery & Valuation
+                </div>
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+                  {aiDiscoveryMsg}
+                </div>
+              </div>
+            </div>
+          )}
+
           {loading ? (
             <div style={{ textAlign: 'center', padding: '5rem 0', color: 'var(--text-muted)' }}>
-              <Sparkles size={28} color="#818cf8" style={{ margin: '0 auto 1rem auto', animation: 'spin 2s linear infinite' }} />
-              <div style={{ fontSize: '1.1rem', fontWeight: 600 }}>Loading properties and AI valuations...</div>
+              <Sparkles size={28} color="#4f46e5" style={{ margin: '0 auto 1rem auto', animation: 'spin 2s linear infinite' }} />
+              <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--text-main)' }}>
+                {smartPrompt ? `Querying Google Gemini & evaluating properties in "${smartPrompt}"...` : 'Loading properties and AI valuations...'}
+              </div>
+              <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '0.35rem' }}>
+                Powered by Google Gemini API & XGBoost Multi-Modal Regressor
+              </div>
             </div>
           ) : fetchError ? (
             <div className="glass-panel" style={{ textAlign: 'center', padding: '3.5rem 2rem', borderRadius: 'var(--radius-lg)' }}>
