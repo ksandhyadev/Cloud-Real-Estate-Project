@@ -175,7 +175,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
       {/* Hero Showcase Grid */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))',
         gap: '2rem',
         marginBottom: '2.5rem'
       }}>
@@ -185,7 +185,7 @@ export default function PropertyDetailPage({ propertyId, onBack, onNavigateCompa
           <div style={{
             position: 'relative',
             width: '100%',
-            height: '380px',
+            height: 'clamp(240px, 45vw, 380px)',
             borderRadius: 'var(--radius-lg)',
             overflow: 'hidden',
             border: '1px solid var(--border-card)',

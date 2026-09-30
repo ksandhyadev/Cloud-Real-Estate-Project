@@ -81,18 +81,18 @@ export default function ComparePage({ onSelectProperty, onNavigateSearch }) {
           {error}
         </div>
       ) : comparisonData ? (
-        <div className="glass-panel" style={{ borderRadius: 'var(--radius-xl)', overflow: 'hidden', border: '1px solid var(--border-card)' }}>
-          
-          {/* Properties Header Cards Row */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: `220px repeat(${comparisonData.properties.length}, 1fr)`,
-            borderBottom: '1px solid var(--border-card)',
-            background: 'rgba(15, 23, 42, 0.7)'
-          }}>
-            <div style={{ padding: '1.5rem', fontWeight: 800, fontSize: '0.9rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>
-              Comparison Metric
-            </div>
+        <div className="glass-panel table-scroll-container" style={{ borderRadius: 'var(--radius-xl)', border: '1px solid var(--border-card)' }}>
+          <div style={{ minWidth: `${Math.max(650, 200 + comparisonData.properties.length * 220)}px` }}>
+            {/* Properties Header Cards Row */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: `220px repeat(${comparisonData.properties.length}, 1fr)`,
+              borderBottom: '1px solid var(--border-card)',
+              background: 'rgba(15, 23, 42, 0.7)'
+            }}>
+              <div style={{ padding: '1.5rem', fontWeight: 800, fontSize: '0.9rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>
+                Comparison Metric
+              </div>
 
             {comparisonData.properties.map(p => (
               <div key={p.id} style={{ padding: '1.5rem', borderLeft: '1px solid var(--border-card)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -148,6 +148,7 @@ export default function ComparePage({ onSelectProperty, onNavigateSearch }) {
               ))}
             </div>
           ))}
+          </div>
 
         </div>
       ) : null}

@@ -36,6 +36,7 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState('');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'map'
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   // Smart natural language search state
   const [smartPrompt, setSmartPrompt] = useState('');
@@ -219,57 +220,71 @@ export default function SearchPage({ initialFilters = {}, onSelectProperty }) {
           </p>
         </div>
 
-        {/* View Toggle (Grid / Map) */}
-        <div style={{ display: 'flex', background: 'var(--bg-secondary)', padding: '4px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+          {/* Mobile Filter Toggle Button */}
           <button
-            onClick={() => setViewMode('grid')}
+            className="mobile-only btn btn-secondary btn-sm"
+            onClick={() => setShowMobileFilters(!showMobileFilters)}
             style={{
-              padding: '0.45rem 0.85rem',
-              borderRadius: 'var(--radius-sm)',
-              border: 'none',
-              background: viewMode === 'grid' ? 'var(--accent-primary)' : 'transparent',
-              color: viewMode === 'grid' ? '#fff' : 'var(--text-muted)',
-              fontWeight: 600,
-              fontSize: '0.8rem',
-              cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.4rem'
+              gap: '0.4rem',
+              borderColor: showMobileFilters ? 'var(--accent-primary)' : 'var(--border-card)',
+              background: showMobileFilters ? 'rgba(99, 102, 241, 0.2)' : 'var(--bg-secondary)',
+              color: showMobileFilters ? '#a5b4fc' : 'var(--text-main)'
             }}
           >
-            <LayoutGrid size={15} /> Grid View
+            <ListFilter size={15} color={showMobileFilters ? '#818cf8' : 'currentColor'} />
+            <span>{showMobileFilters ? 'Hide Filters' : 'Filters & Refine'}</span>
           </button>
-          <button
-            onClick={() => setViewMode('map')}
-            style={{
-              padding: '0.45rem 0.85rem',
-              borderRadius: 'var(--radius-sm)',
-              border: 'none',
-              background: viewMode === 'map' ? 'var(--accent-primary)' : 'transparent',
-              color: viewMode === 'map' ? '#fff' : 'var(--text-muted)',
-              fontWeight: 600,
-              fontSize: '0.8rem',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.4rem'
-            }}
-          >
-            <Map size={15} /> Map View
-          </button>
+
+          {/* View Toggle (Grid / Map) */}
+          <div style={{ display: 'flex', background: 'var(--bg-secondary)', padding: '4px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-card)' }}>
+            <button
+              onClick={() => setViewMode('grid')}
+              style={{
+                padding: '0.45rem 0.85rem',
+                borderRadius: 'var(--radius-sm)',
+                border: 'none',
+                background: viewMode === 'grid' ? 'var(--accent-primary)' : 'transparent',
+                color: viewMode === 'grid' ? '#fff' : 'var(--text-muted)',
+                fontWeight: 600,
+                fontSize: '0.8rem',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem'
+              }}
+            >
+              <LayoutGrid size={15} /> Grid View
+            </button>
+            <button
+              onClick={() => setViewMode('map')}
+              style={{
+                padding: '0.45rem 0.85rem',
+                borderRadius: 'var(--radius-sm)',
+                border: 'none',
+                background: viewMode === 'map' ? 'var(--accent-primary)' : 'transparent',
+                color: viewMode === 'map' ? '#fff' : 'var(--text-muted)',
+                fontWeight: 600,
+                fontSize: '0.8rem',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem'
+              }}
+            >
+              <Map size={15} /> Map View
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Main 2-Column Search Layout */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '280px 1fr',
-        gap: '2rem',
-        alignItems: 'start'
-      }}>
+      {/* Main Responsive 2-Column Search Layout */}
+      <div className="responsive-search-layout">
         
         {/* Left Column: Filter Sidebar */}
-        <aside style={{ position: 'sticky', top: '90px' }}>
+        <aside className={`search-filter-sidebar ${showMobileFilters ? 'mobile-visible' : ''}`} style={{ position: 'sticky', top: '90px' }}>
           <FilterSidebar 
             filters={filters} 
             setFilters={(newFilters) => {

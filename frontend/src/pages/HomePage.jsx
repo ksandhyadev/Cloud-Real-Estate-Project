@@ -123,12 +123,7 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
             </div>
 
             {/* Search Input Controls */}
-            <form onSubmit={handleSearchSubmit} style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr)) 120px',
-              gap: '1rem',
-              alignItems: 'end'
-            }}>
+            <form onSubmit={handleSearchSubmit} className="hero-search-form">
               
               {/* City */}
               <div style={{ textAlign: 'left' }}>
@@ -233,7 +228,7 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
               {/* Submit CTA */}
               <button 
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary hero-search-form-btn"
                 style={{ height: '44px', width: '100%', padding: 0 }}
               >
                 <Search size={18} /> Search
@@ -243,7 +238,7 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
           </div>
 
           {/* Quick Category Pills */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', marginTop: '2rem', flexWrap: 'wrap' }}>
             {propertyTypes.map(t => {
               const Icon = t.icon;
               return (
@@ -287,7 +282,7 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
       {/* Featured Properties Section */}
       <section style={{ padding: '4rem 0' }}>
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
               <div style={{ color: '#a5b4fc', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Verified Market Listings
@@ -307,11 +302,7 @@ export default function HomePage({ properties = [], onSelectProperty, onSearchWi
           </div>
 
           {/* Properties Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '1.75rem'
-          }}>
+          <div className="grid-responsive-cards">
             {properties.slice(0, 6).map(p => (
               <PropertyCard
                 key={p.id}
