@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.backend
+    container_name: realestate_ai_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PROJECT_NAME=Cloud-Based Real Estate Analysis
+      - SECRET_KEY=academic-real-estate-ai-secret-key-2026-supersecure
+      - ENVIRONMENT=production
+      - DATABASE_URL=sqlite:////app/real_estate.db
+      - GEOAPIFY_API_KEY=${GEOAPIFY_API_KEY:-}
+    volumes:
+      - backend_data:/app/uploads
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.frontend
+    container_name: realestate_ai_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_data:
